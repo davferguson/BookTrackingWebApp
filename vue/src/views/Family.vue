@@ -6,15 +6,10 @@
     </div>
     <NavBar/>
     <div class="familywindow">
-      <div class="headline">
+      <div>
       <h3 v-show="family.familyName == ''">Please register your Family...</h3>
       <h3 v-show="family.familyName != ''">The {{ family.familyName }} family</h3>
       </div>
-      <!-- <div class="familymembers"
-          v-for="member in this.$store.state.familyMembers"
-          v-bind:key="member.user_id">
-          <p>{{ member.username + familyReading }}</p>
-      </div> -->
       <reading-info v-for="member in this.$store.state.familyMembers"
       v-bind:key="member.user_id" v-bind:curUser="member"/>
       <div v-if="!isRegistered">
@@ -180,15 +175,5 @@ h3 {
   font-family: "Mouse Memoirs", sans-serif;
 }
 
-.familymembers {
-    height:40px;
-    width: 50%;
-    background: rgba(255, 253, 253, 0.7);
-    position:relative;
-    margin: 0 auto;
-    color:rgb(131, 126, 126);
-    font-size: 20px;
-    font-family: "Mouse Memoirs", sans-serif;
-}
 
 </style>

@@ -104,6 +104,11 @@ export default {
     height:70vh;
     width: 70vw;
 }
+h3 {
+  font-size: 40px;
+  color: #f8c630;
+  font-family: "Mouse Memoirs", sans-serif;
+}
 
 #addbookform {
     position: absolute;
