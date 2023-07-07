@@ -78,7 +78,6 @@ export default {
 
 
 <style scoped>
-
 .bookAdded {
     height:40px;
     width: 50%;

@@ -43,22 +43,6 @@ import NavBar from '@/components/NavBar.vue';
 </script>
 
 <style scoped>
-    .homebackground {
-        width: 90vw;
-        height: 100vh;
-        padding-left: 4%;
-    } 
-
-    .home {
-  position:absolute;
-  top:20px;
-  left: 10%;
-  color: #724E91;
-  text-decoration: none;
-  font-family: "Mouse Memoirs", sans-serif;
-  font-size: 150%;
-}
-
 .prizebody {
     position: absolute;
     height: 50%;
