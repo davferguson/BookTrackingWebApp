@@ -5,21 +5,21 @@
     <h1>Home</h1>
     <p>Welcome, {{username}}!</p>
   </div>
-  <div class="nav">
-    <p><router-link class="profilelink" v-bind:to="{name: 'profile'}">Profile</router-link> </p>
-    <router-link class="familylink" :to="{ name: 'family'}">Family</router-link>
-    <p><router-link class="readinglistlink" :to="{ name: 'readingList' }">Reading List</router-link></p>
-    <p><router-link class="prizeslink" :to="{ name: 'prizes' }">Prizes</router-link></p>
-  </div>
+  <NavBar/>
+  
   </div>
 </template>
 
 <script>
-import theFamily from '../views/Family.vue';
+//import theFamily from '../views/Family.vue';
+import NavBar from '@/components/NavBar.vue';
 
 export default {
   name: "home",
-  components: theFamily,
+  components: {
+    //theFamily,
+    NavBar
+  },
   data() {
     return {
       username: this.$store.state.user.username,
