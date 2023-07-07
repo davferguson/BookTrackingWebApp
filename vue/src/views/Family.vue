@@ -191,7 +191,4 @@ h3 {
     font-family: "Mouse Memoirs", sans-serif;
 }
 
-.familylink, .prizelink {
-  color: #f8c630;
-}
 </style>

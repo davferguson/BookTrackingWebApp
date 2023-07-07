@@ -57,12 +57,4 @@ export default {
   text-align: center;
   top: 10px;
 }
-
-.profilelink,
-.readinglistlink,
-.prizeslink {
-      color: #F8C630;
-
-}
-
 </style>

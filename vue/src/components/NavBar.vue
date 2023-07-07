@@ -1,5 +1,6 @@
 <template>
     <div id="navbox">
+        <p><router-link v-bind:to="{ name: 'home' }">Home</router-link></p>
         <p><router-link class="profilelink" v-bind:to="{name: 'profile'}">Profile</router-link> </p>
         <p><router-link class="familylink" :to="{ name: 'family'}">Family</router-link></p>
         <p><router-link class="readinglistlink" :to="{ name: 'readingList' }">Reading List</router-link></p>
@@ -39,4 +40,15 @@ export default {
         font-family: "Mouse Memoirs", sans-serif;
         font-size: 25px;
     }
+
+    p {
+        color: green;
+    }
+    /*.profilelink,
+    .readinglistlink,
+    .familylink,
+    .prizeslink {
+      color: #F8C630;
+
+    }*/
 </style>
