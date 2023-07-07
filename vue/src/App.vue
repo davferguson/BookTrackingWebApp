@@ -11,7 +11,11 @@
 <style>
 #nav{
   left:10%;
-  padding-left:10%
+  padding-left:10%;
+}
+
+body {
+  margin: 0;
 }
 
 @font-face {
@@ -27,9 +31,8 @@
 }
 
 .homebackground {
-      width: 90vw;
+      width: 100vw;
       height: 100vh;
-      padding-left: 4%;
     } 
   .home {
     position:absolute;

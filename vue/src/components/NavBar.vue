@@ -40,6 +40,9 @@ export default {
         font-family: "Mouse Memoirs", sans-serif;
         font-size: 25px;
     }
+    .linktext:hover{
+        color: orangered;
+    }
     .linktext {
         color: #F8C630;
     }
