@@ -1,5 +1,5 @@
 <template>
-<div id="backgroundimg">
+<div>
     <img class="homebackground" src="living-room.jpg">
     <div class="home">
     <p>Welcome, {{ this.username }}!</p>
