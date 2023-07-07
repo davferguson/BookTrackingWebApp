@@ -1,9 +1,6 @@
 <template>
   <div>
     <img class="homebackground" src="living-room.jpg" />
-    <div class="home">
-      <p>Welcome, {{ this.username }}!</p>
-    </div>
     <NavBar/>
     <div class="familywindow">
       <div>

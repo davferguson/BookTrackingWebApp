@@ -1,9 +1,6 @@
 <template>
 <div>
     <img class="homebackground" src="living-room.jpg">
-        <div class="home">
-            <p>Welcome, {{username}}!</p>
-        </div>
         <NavBar/>
          <div class="prizewindow">
              <h1 class="pageheading">Prizes coming soon!</h1>
