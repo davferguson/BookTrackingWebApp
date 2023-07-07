@@ -7,8 +7,8 @@
     <NavBar/>
     <div class="familywindow">
       <div class="headline">
-      <h3 v-show="familyName == ''">Please register your family...</h3>
-      <h3 v-show="familyName != ''">The {{ family.familyName }} family</h3>
+      <h3 v-show="family.familyName == ''">Please register your Family...</h3>
+      <h3 v-show="family.familyName != ''">The {{ family.familyName }} family</h3>
       </div>
       <!-- <div class="familymembers"
           v-for="member in this.$store.state.familyMembers"
