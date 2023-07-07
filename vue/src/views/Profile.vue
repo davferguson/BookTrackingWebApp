@@ -1,12 +1,10 @@
 <template>
 <div>
     <img class="homebackground" src="living-room.jpg">
-    
+
     <NavBar/>
 
      <div class="profilewindow">
-        <!-- <h3>Welcome to your profile!</h3> -->
-        <!-- <button id="recordreading" v-on:click="setReadingActivitytoTrue()">Add Reading Activity</button> -->
         <form v-show="addReadingActivity" >
             <input name="userName" type="text" v-model="readingActivity.username"/>
             <input name="minutes_read" type="number" v-model="readingActivity.minutes_read" />
