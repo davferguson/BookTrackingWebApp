@@ -131,7 +131,7 @@ h3 {
 h2 {
     display: flex;
     background-color: #3a2649;
-    color:white;
+    color: #f8c630;
     font-family: "Mouse Memoirs", sans-serif;
     text-align: left;
     font-size: 2.5rem;
