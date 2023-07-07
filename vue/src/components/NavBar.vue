@@ -1,10 +1,10 @@
 <template>
     <div id="navbox">
-        <p><router-link v-bind:to="{ name: 'home' }">Home</router-link></p>
-        <p><router-link class="profilelink" v-bind:to="{name: 'profile'}">Profile</router-link> </p>
-        <p><router-link class="familylink" :to="{ name: 'family'}">Family</router-link></p>
-        <p><router-link class="readinglistlink" :to="{ name: 'readingList' }">Reading List</router-link></p>
-        <p><router-link class="prizeslink" :to="{ name: 'prizes' }">Prizes</router-link></p>
+        <p><router-link class="linktext" v-bind:to="{ name: 'home' }">Home</router-link></p>
+        <p><router-link class="linktext" v-bind:to="{name: 'profile'}">Profile</router-link> </p>
+        <p><router-link class="linktext" :to="{ name: 'family'}">Family</router-link></p>
+        <p><router-link class="linktext" :to="{ name: 'readingList' }">Reading List</router-link></p>
+        <p><router-link class="linktext" :to="{ name: 'prizes' }">Prizes</router-link></p>
     </div>
 </template>
 
@@ -40,9 +40,8 @@ export default {
         font-family: "Mouse Memoirs", sans-serif;
         font-size: 25px;
     }
-
-    p {
-        color: green;
+    .linktext {
+        color: #F8C630;
     }
     /*.profilelink,
     .readinglistlink,
