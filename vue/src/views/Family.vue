@@ -4,24 +4,7 @@
     <div class="home">
       <p>Welcome, {{ this.username }}!</p>
     </div>
-    <div class="nav">
-      <p>
-        <router-link class="profilelink" v-bind:to="{ name: 'profile' }"
-          >Profile</router-link
-        >
-      </p>
-      <router-link class="familylink" :to="{ name: 'family' }"
-        >Family</router-link
-      >
-      <p>
-        <router-link class="readinglistlink" :to="{ name: 'readingList' }"
-          >Reading List</router-link
-        >
-      </p>
-      <p>
-        <router-link class="prizelink" :to="{ name: 'prizes' }">
-          Prizes</router-link></p>
-    </div>
+    <NavBar/>
     <div class="familywindow">
       <div class="headline">
       <h3 v-show="familyName == ''">Please register your family...</h3>
@@ -88,11 +71,13 @@
 <script>
 import FamilyService from "../services/FamilyService";
 import ReadingInfo from "../components/ReadingInfo.vue"
+import NavBar from '@/components/NavBar.vue';
 
 export default {
   name: "the-family",
   components: {
-    ReadingInfo
+    ReadingInfo,
+    NavBar
   },
   data() {
     return {

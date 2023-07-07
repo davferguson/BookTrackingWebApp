@@ -5,12 +5,7 @@
     <p>Welcome, {{ this.username }}!</p>
     </div>
     
-    <div class="nav">
-    <p><router-link class="profilelink" v-bind:to="{name: 'profile'}">Profile</router-link> </p>
-    <router-link class="familylink" :to="{ name: 'family'}">Family</router-link>
-    <p><router-link class="readinglistlink" :to="{ name: 'readingList' }">Reading List</router-link></p>
-    <p><router-link class="prizeslink" :to="{ name: 'prizes' }">Prizes</router-link></p>
-    </div>
+    <NavBar/>
 
      <div class="profilewindow">
         <!-- <h3>Welcome to your profile!</h3> -->
@@ -44,11 +39,13 @@ import RecordReading from '@/components/RecordReading.vue';
 import CurrentlyReading from '@/components/CurrentlyReading.vue';
 import FinishedReading from '../components/FinishedReading.vue';
 import FamilyService from '../services/FamilyService';
+import NavBar from '@/components/NavBar.vue';
 export default {
   components: { 
     RecordReading,
     CurrentlyReading,
-    FinishedReading
+    FinishedReading,
+    NavBar
    },
     name: 'the-profile',
   

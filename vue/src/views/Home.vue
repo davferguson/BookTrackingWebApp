@@ -51,17 +51,6 @@ export default {
   font-size: 150%;
 }
 
-.nav {
-  margin-top: 0px;
-  position: absolute;
-  top: 150px;
-  left: 10%;
-  color: #F8C630;
-  font-family: "Mouse Memoirs", sans-serif;
-  font-size: 25px;
-
-}
-
 .familyview {
   border-width: 20px;
   border-color: black;

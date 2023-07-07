@@ -4,14 +4,7 @@
     <div class="home">
     <p>Welcome, {{this.username}}!</p>
     </div>
-    
-    <div class="nav">
-    <p><router-link class="profilelink" v-bind:to="{name: 'profile'}">Profile</router-link> </p>
-    <p><router-link class="familylink" :to="{ name: 'family'}">Family</router-link></p>
-    <p><router-link class="readinglistlink" :to="{ name: 'readingList' }">Reading List</router-link></p>
-    <p><router-link class="prizelink" :to="{ name: 'prizes' }">Prizes</router-link></p>
-    </div>
-
+    <NavBar/>
      <div class="profilewindow">
         <h3>Welcome to your Books!</h3>
         <button id="addbook" v-on:click="setReadingActivitytoTrue()">Add a Book!</button>
@@ -36,10 +29,14 @@
 </template>
 
 <script>
-import BookService from '../services/BookService'
+import BookService from '../services/BookService';
+import NavBar from '@/components/NavBar.vue';
 export default {
     
     name: 'reading-list',
+    components: {
+    NavBar
+  },
   
 
     data() {
