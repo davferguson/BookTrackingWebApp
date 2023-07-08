@@ -162,7 +162,7 @@ export default {
   top: 50px;
   left: 18%;
   background: rgba(114, 78, 145, 0.7);
-  height: 100vh;
+  height: 28rem;
   width: 70vw;
 }
 
