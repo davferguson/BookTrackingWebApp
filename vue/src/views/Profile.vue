@@ -117,6 +117,9 @@ export default {
 
 
 <style scoped>
+.homebackground {
+      min-height: 60rem;
+    } 
 h3 {
     margin-bottom: 0;
     margin-top: 0;
