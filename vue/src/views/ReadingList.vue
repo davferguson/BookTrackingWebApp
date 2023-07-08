@@ -15,9 +15,9 @@
             <button v-on:click.prevent="submitAddedBook()">Add Book</button>
         </form>
         </div>
-         <div class="bookAdded" v-for="book in this.$store.state.bookCompleted" v-bind:key="book.isbn">
+         <!--<div class="bookAdded" v-for="book in this.$store.state.bookCompleted" v-bind:key="book.isbn">
             <p>{{ book.book_name + ", " + book.author + ", " + book.isbn }}</p>
-        </div>
+        </div>-->
     </div>
 
  
