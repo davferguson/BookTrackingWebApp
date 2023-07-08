@@ -15,9 +15,7 @@
             <button v-on:click.prevent="submitAddedBook()">Add Book</button>
         </form>
         </div>
-         <!--<div class="bookAdded" v-for="book in this.$store.state.bookCompleted" v-bind:key="book.isbn">
-            <p>{{ book.book_name + ", " + book.author + ", " + book.isbn }}</p>
-        </div>-->
+        <BookInfo/>
     </div>
 
  
@@ -28,11 +26,13 @@
 <script>
 import BookService from '../services/BookService';
 import NavBar from '@/components/NavBar.vue';
+import BookInfo from '@/components/BookInfo.vue';
 export default {
     
     name: 'reading-list',
     components: {
-    NavBar
+    NavBar,
+    BookInfo
   },
   
 
