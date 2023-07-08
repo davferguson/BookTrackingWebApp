@@ -1,11 +1,14 @@
 <template>
     <div class="familymembers" v-on:click="onClick()">
         {{curUser.username}} 
-        <ul id="flexcontainer" v-if="isVisible">
-        <li>Total Minutes Read: {{ReadingActivity.minutes_read}}</li>
+        <div id="flexcontainer" v-if="isVisible">
+        <!--<li>Total Minutes Read: {{ReadingActivity.minutes_read}}</li>
         <li>Books Completed: {{ReadingActivity.books_read}}</li>
-        <li>Books Reading: {{ReadingActivity.books_reading}}</li>
-        </ul>
+        <li>Books Reading: {{ReadingActivity.books_reading}}</li>-->
+        <p>Total Minutes Read: {{ReadingActivity.minutes_read}}</p>
+        <p>Books Completed: {{ReadingActivity.books_read}}</p>
+        <p>Books Reading: {{ReadingActivity.books_reading}}</p>
+        </div>
     </div>
 </template>
 
@@ -51,7 +54,6 @@ export default {
 }
 
 .familymembers {
-    height:53px;
     width: 50%;
     background: rgba(255, 253, 253, 0.521);
     position:relative;
