@@ -35,7 +35,7 @@ export default {
         margin-top: 0px;
         position: absolute;
         top: 150px;
-        left: 1rem;
+        left: 5%;
         color: #F8C630;
         font-family: "Mouse Memoirs", sans-serif;
         font-size: 25px;

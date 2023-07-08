@@ -33,6 +33,7 @@ body {
 .homebackground {
       width: 100vw;
       height: 100vh;
+      min-height: 50rem;
     } 
   .home {
     position:absolute;

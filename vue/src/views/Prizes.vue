@@ -42,9 +42,9 @@ import NavBar from '@/components/NavBar.vue';
 <style scoped>
 .prizebody {
     position: absolute;
-    height: 50%;
+    height: 30rem;
     width: 50%;
-    top: 17%;
+    top: 9rem;
     left: 28%;
     background-color: #22162b;
     margin: 0 auto;
@@ -60,19 +60,19 @@ import NavBar from '@/components/NavBar.vue';
   top: 50px;
   left: 18%;
   background: rgba(114, 78, 145, 0.7);
-  height: 70vh;
+  height: 40rem;
   width: 70vw;
 }
 
 .pageheading {
     font-family: "Mouse Memoirs", sans-serif;
     font-size: 4em;
-    padding-top: 1.5%;
     color: #F8C630;
+    margin: 0;
 }
 
 #trophy {
-    height: 50%;
+    height: 15%;
 }
 
 </style>
