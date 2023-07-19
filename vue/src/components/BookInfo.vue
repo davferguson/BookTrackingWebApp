@@ -4,16 +4,17 @@
             <img v-bind:src="'http://covers.openlibrary.org/b/isbn/' + book.isbn + '-M.jpg'"/>
         </div>
         <div class="info">
-            Book Title<br>
-            Author<br>
-            ISBN<br>
-            minutes read: <br>
+            {{ book.book_name }}<br>
+            Author {{ book.author }}<br>
+            ISBN {{ book.isbn }}<br>
+            minutes read: {{ this.minutes_read }}<br>
             finished?:
         </div>
     </div>
 </template>
 
 <script>
+import BookService from '../services/BookService';
 
 export default {
     name: 'book-info',
@@ -24,6 +25,7 @@ export default {
         return {
             url: "/book/" + this.book.isbn,
             user: this.$store.state.user,
+            minutes_read: 0,
             readingActivity: {
               username: this.$store.state.user.username, 
               minutes_read: "",
@@ -33,6 +35,11 @@ export default {
         }
     },
     methods: {    
+    },
+    created() {
+        BookService.minutesRead(this.readingActivity.username, this.readingActivity.isbn).then(response => {
+                this.minutes_read = response.data;
+            });
     },
     computed: {
     }
