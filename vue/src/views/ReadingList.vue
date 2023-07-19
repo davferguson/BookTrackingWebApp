@@ -16,7 +16,7 @@
         </form>
         </div>
         <!-- <BookInfo/> -->
-        <BookList/>
+        <BookList v-bind:books="$store.state.allBooks"/>
     </div>
 
  

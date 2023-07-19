@@ -1,7 +1,15 @@
 <template>
     <div class="container">
-        <div class="img">img</div>
-        <div class="info">info</div>
+        <div class="img">
+            <img v-bind:src="'http://covers.openlibrary.org/b/isbn/' + book.isbn + '-M.jpg'"/>
+        </div>
+        <div class="info">
+            Book Title<br>
+            Author<br>
+            ISBN<br>
+            minutes read: <br>
+            finished?:
+        </div>
     </div>
 </template>
 
@@ -43,8 +51,11 @@ export default {
 .container > div {
   background-color: rgba(255, 255, 255, 0.8);
   text-align: center;
-  padding: 20px 0;
   font-size: 30px;
+}
+img {
+    /* height: 14rem; */
+    width: 10rem;
 }
 .img {
     grid-area: image;

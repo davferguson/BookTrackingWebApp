@@ -2,7 +2,8 @@
     <div>
     
         <div class="book-container">
-            <!-- <book-card v-bind:book="book" v-for="book in books" v-bind:key="book.isbn" /> -->
+            <BookInfo v-bind:book="book" v-for="book in books" v-bind:key="book.isbn" />
+            <!-- <BookInfo/>
             <BookInfo/>
             <BookInfo/>
             <BookInfo/>
@@ -17,8 +18,7 @@
             <BookInfo/>
             <BookInfo/>
             <BookInfo/>
-            <BookInfo/>
-            <BookInfo/>
+            <BookInfo/> -->
         </div>
     </div>
       
