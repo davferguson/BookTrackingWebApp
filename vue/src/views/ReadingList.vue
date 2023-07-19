@@ -15,7 +15,8 @@
             <button v-on:click.prevent="submitAddedBook()">Add Book</button>
         </form>
         </div>
-        <BookInfo/>
+        <!-- <BookInfo/> -->
+        <BookList/>
     </div>
 
  
@@ -26,13 +27,15 @@
 <script>
 import BookService from '../services/BookService';
 import NavBar from '@/components/NavBar.vue';
-import BookInfo from '@/components/BookInfo.vue';
+// import BookInfo from '@/components/BookInfo.vue';
+import BookList from '@/components/BookList.vue';
 export default {
     
     name: 'reading-list',
     components: {
     NavBar,
-    BookInfo
+    // BookInfo
+    BookList
   },
   
 
