@@ -17,8 +17,10 @@
           v-model="family.familyName"
           v-show="disabled"
         />
+        <br />
         <input
           type="submit"
+          class="submit_btn"
           v-on:click.prevent="registerFamily(), (disabled = false)"
           v-show="disabled"
         />
