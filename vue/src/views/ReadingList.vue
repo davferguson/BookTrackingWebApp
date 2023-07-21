@@ -4,7 +4,7 @@
     <NavBar/>
      <div class="profilewindow">
         <h3>Welcome to your Books!</h3>
-        <button id="addbook" v-on:click="setReadingActivitytoTrue()">Add a Book!</button>
+    
         <div id="addbookform">
         <form v-show="addReadingActivity" >
             <input name="isbn" type="text" placeholder="Enter ISBN" v-model="addedBook.isbn"/>
@@ -12,11 +12,13 @@
             <input name="author" type="text" placeholder="Enter author" v-model="addedBook.author"/>
             <input name="pages" type="number" placeholder="Enter number of pages" v-model="addedBook.numberofpages"/>
             <input name="format" type="text" placeholder="PAPER or DIGITAL?" v-model="addedBook.format"/>
-            <button v-on:click.prevent="submitAddedBook()">Add Book</button>
+            <br />
+            <button class="addbook_btn" v-on:click.prevent="submitAddedBook()">Add Book</button>
         </form>
         </div>
         <!-- <BookInfo/> -->
         <BookList v-bind:books="$store.state.allBooks"/>
+        <button class="addbook_btn" id="addbook" v-on:click="setReadingActivitytoTrue()">Add a Book!</button>
     </div>
 
  
@@ -78,6 +80,12 @@ export default {
 
 
 <style scoped>
+.addbook_btn {
+  background-color: #22162B;
+  color: #f8c630;
+  font-family: "Mouse Memoirs", sans-serif;
+  font-size: 1.8rem;
+}
 .bookAdded {
     height:40px;
     width: 50%;
@@ -100,13 +108,17 @@ export default {
     position:absolute;
     top:50px;
     left:18%;
-    background: rgba(114,78,145,0.7);
-    height:70vh;
+    /* background: rgba(114,78,145,0.7); */
+    height:45rem;
     width: 70vw;
 }
 h3 {
   font-size: 40px;
   color: #f8c630;
+  background-color: #3a2649;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  margin: 0;
   font-family: "Mouse Memoirs", sans-serif;
 }
 

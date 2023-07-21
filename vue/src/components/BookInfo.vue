@@ -51,29 +51,30 @@ export default {
   display: grid;
   /* grid-template-areas: 
   'image info info info info'; */
-  grid-template-columns: 10.3rem 1fr;
+  grid-template-columns: 8.3rem 1fr;
   gap:0px;
-  background-color: rgba(114,78,145,0.7);
+  background-color: #724e91b3;
   padding: 0px;
 }
 .container > div {
-  text-align: center;
-  font-size: 1.3rem;
   border-top: 5px solid #3a2649;
 
 }
 img {
-    max-width: 10rem;
+    max-width: 8rem;
 }
 .img {
     /* grid-area: image; */
     border-right: 5px solid #3a2649;
     /* background-color: #3a2649; */
+    background-color: #3f2950;
     /* width: 10rem; */
 }
 .info {
     /* grid-area: info; */
     color: #f8c630;
     font-family: "Mouse Memoirs", sans-serif;
+    text-align: center;
+    font-size: 1.5rem;
 }
 </style>
