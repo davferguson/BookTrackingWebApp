@@ -15,8 +15,15 @@
             <div v-on:click="onClickBooks()">
             <record-reading class="allBooks" v-bind:books="$store.state.allBooks"/>
             </div>
-            <!-- <h2>Currently Reading: <h3>Hours: {{this.hours}} Minutes: {{this.minutes}}</h3></h2> -->
-            <h2>Currently Reading: <h3>Hours: {{hours}} Minutes: {{minutes}}</h3></h2>
+            <div class="container">
+                <h2 class="item">
+                    Currently Reading:
+                </h2>
+                <h2 class="item">
+                    Hours: {{hours}} Minutes: {{minutes}}
+                </h2>
+            </div>
+            
             <currently-reading class="allBooks" v-bind:books="$store.state.currentlyReading"/>
             <h2>Finished Books:</h2>
             <finished-reading v-bind:books="$store.state.finishedReading"/>
@@ -117,27 +124,26 @@ export default {
 
 
 <style scoped>
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
 .homebackground {
       min-height: 60rem;
-    } 
-h3 {
-    margin-bottom: 0;
-    margin-top: 0;
-    padding-left: 13vw;
-}
-
+} 
 h2 {
     display: flex;
     background-color: #3a2649;
     color: #f8c630;
     font-family: "Mouse Memoirs", sans-serif;
     text-align: left;
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     margin-bottom: 0;
     margin-top: 0;
-    padding-top: 10px;
+    padding-top: 7px;
     padding-left: 2rem;
-    padding-bottom: 10px;
+    padding-bottom: 7px;
 }
 
 .allBooks {
