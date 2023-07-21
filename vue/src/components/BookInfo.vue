@@ -49,25 +49,31 @@ export default {
 <style scoped>
 .container {
   display: grid;
-  grid-template-areas: 
-  'image info info info info';
-  gap:10px;
-  background-color: #2196F3;
+  /* grid-template-areas: 
+  'image info info info info'; */
+  grid-template-columns: 10.3rem 1fr;
+  gap:0px;
+  background-color: rgba(114,78,145,0.7);
   padding: 0px;
 }
 .container > div {
-  background-color: rgba(255, 255, 255, 0.8);
   text-align: center;
-  font-size: 30px;
+  font-size: 1.3rem;
+  border-top: 5px solid #3a2649;
+
 }
 img {
-    /* height: 14rem; */
-    width: 10rem;
+    max-width: 10rem;
 }
 .img {
-    grid-area: image;
+    /* grid-area: image; */
+    border-right: 5px solid #3a2649;
+    /* background-color: #3a2649; */
+    /* width: 10rem; */
 }
 .info {
-    grid-area: info;
+    /* grid-area: info; */
+    color: #f8c630;
+    font-family: "Mouse Memoirs", sans-serif;
 }
 </style>

@@ -3,22 +3,6 @@
     
         <div class="book-container">
             <BookInfo v-bind:book="book" v-for="book in books" v-bind:key="book.isbn" />
-            <!-- <BookInfo/>
-            <BookInfo/>
-            <BookInfo/>
-            <BookInfo/>
-            <BookInfo/>
-            <BookInfo/>
-            <BookInfo/>
-            <BookInfo/>
-            <BookInfo/>
-            <BookInfo/>
-            <BookInfo/>
-            <BookInfo/>
-            <BookInfo/>
-            <BookInfo/>
-            <BookInfo/>
-            <BookInfo/> -->
         </div>
     </div>
       
@@ -41,13 +25,13 @@
     <style scoped>
     
     .book-container {
-        background-color: #22162B;
+        /* background-color: #22162B; */
         display: grid;
-        gap: 1%;
+        /* gap: 1%; */
         grid-auto-flow: row;
         margin-bottom: 0;
         padding-bottom: 0;
-        height: 30rem;
+        height: 40rem;
     
     
         overflow-x: auto;
