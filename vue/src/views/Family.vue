@@ -25,7 +25,7 @@
       </div>
 
       <div>
-        <p id="AddChild">Add a child account</p>
+        <p id="AddChild">Create a child account</p>
         <form>
           <input
             type="text"
@@ -40,7 +40,8 @@
             placeholder="Confirm Password"
             v-model="child.confirmPassword"
           />
-          <input type="submit" v-on:click.prevent="registerChild()" />
+          <br />
+          <input class="submit_btn" type="submit" v-on:click.prevent="registerChild()" />
         </form>
       </div>
 
@@ -52,8 +53,9 @@
             placeholder="Child Username"
             v-model="newFamilyMember.username"
           />
+          <br />
           <!-- <input type="text" placeholder="ID of Family" v-model="newFamilyMember.family_id"> -->
-          <input type="submit" v-on:click.prevent="addFamilyMember()" />
+          <input class="submit_btn" type="submit" v-on:click.prevent="addFamilyMember()" />
         </form>
       </div>
     </div>
@@ -154,6 +156,13 @@ export default {
 #AddFamily {
    color: #f8c630;
    font-size: 20px;
+}
+.submit_btn {
+  width: 177px;
+  background-color: #22162B;
+  color: #f8c630;
+  font-family: "Mouse Memoirs", sans-serif;
+  font-size: 1.2rem;
 }
 
 .familywindow {
