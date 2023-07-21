@@ -129,9 +129,7 @@ export default {
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
-.homebackground {
-      min-height: 60rem;
-} 
+
 h2 {
     display: flex;
     background-color: #3a2649;
@@ -148,7 +146,6 @@ h2 {
 
 .allBooks {
     height: 13rem;
-    padding-bottom: 2.3rem;
 }
 
 .bookscompleted {
@@ -167,7 +164,7 @@ h2 {
     left:18%;
     background: rgba(114,78,145,.95);
     /* background: #22162B; */
-    height:55rem;
+    height:45rem;
     width: 70vw;
 }
 </style>

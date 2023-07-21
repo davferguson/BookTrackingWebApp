@@ -142,7 +142,7 @@ label {
 }
 
 .card {
-    height: 14rem;
+    height: 12rem;
     background-color: #3f2950;
 }
 
