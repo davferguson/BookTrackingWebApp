@@ -5,10 +5,10 @@
     <h1>Home</h1>
     <p>Welcome, {{username}}!</p>
     <form>
-      <input name="title" type="text" placeholder="Enter title" v-model="search"/>
-      <br />
+      <input name="title" type="text" placeholder="Enter title" v-model="customSearch"/>
       <button v-on:click.prevent="searchTitle()">Search</button>
     </form>
+    <p>Search: {{ search }}</p>
     <p>ISBM: {{ isbn }}</p>
     <img v-if="isbn" v-bind:src="'http://covers.openlibrary.org/b/isbn/' + isbn + '-M.jpg'" />
   </div>
@@ -31,13 +31,15 @@ export default {
   data() {
     return {
       username: this.$store.state.user.username,
-      search: ["plainsong"],
+      customSearch: '',
       isbn: ''
     }
   },
   methods: {
     searchTitle() {
-      BookService.searchApiByTitle(this.search).then(response => {
+      const search = this.customSearch.split(' ')
+      console.log(search)
+      BookService.searchApiByTitle(search).then(response => {
       this.isbn = response.data[1];
     })
     },
