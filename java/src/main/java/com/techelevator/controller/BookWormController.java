@@ -37,14 +37,19 @@ public class BookWormController {
 
 //    @PreAuthorize("isAuthenticated()")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    @RequestMapping(value = "/booksearch", method = RequestMethod.GET)
-    public String bookTitleSearch(Principal curUser) {
-        String url = "https://openlibrary.org/search.json?title=rent+collector";
+    @RequestMapping(value = "/book_search", method = RequestMethod.GET)
+    public String bookTitleSearch(@RequestBody String[] keywords) {
+        String url = "https://openlibrary.org/search.json?title=";
+        for(int i = 0; i < keywords.length; i++){
+            url += keywords[i];
+            if(i != keywords.length-1){
+                url += "+";
+            }
+        }
         RestTemplate restTemplate = new RestTemplate();
 
         BookSearchAPI bookSearchAPI = restTemplate.getForObject(url, BookSearchAPI.class);
-        System.out.println(bookSearchAPI.getDocs().get(0).getIsbn()[0]);
-        return bookSearchAPI.getDocs().get(0).getIsbn()[0];
+        return "Number of results: " + bookSearchAPI.getNumFound() + "    ISBN: " + bookSearchAPI.getDocs().get(0).getIsbn()[0];
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
