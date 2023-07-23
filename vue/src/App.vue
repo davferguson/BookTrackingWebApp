@@ -7,6 +7,22 @@
   </div>
 </template>
 
+<script>
+export default {
+  name: "app",
+  components: {
+
+  },
+  data() {
+    return {
+      
+    }
+  },
+  created() {
+
+  }
+};
+</script>
 
 <style>
 #nav{

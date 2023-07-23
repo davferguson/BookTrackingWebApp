@@ -13,6 +13,7 @@
 <script>
 //import theFamily from '../views/Family.vue';
 import NavBar from '@/components/NavBar.vue';
+import BookService from '../services/BookService';
 
 export default {
   name: "home",
@@ -24,6 +25,11 @@ export default {
     return {
       username: this.$store.state.user.username,
     }
+  },
+  created() {
+    BookService.list(this.user).then(response => {
+                this.$store.state.allBooks = response.data;
+            })
   }
 };
 </script>
