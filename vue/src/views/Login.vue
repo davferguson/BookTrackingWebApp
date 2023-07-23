@@ -96,8 +96,8 @@ export default {
 
 .form-signin{
   position:absolute;
-  top: 30%;
-  left: 8%;
+  top: 15rem;
+  left: 5rem;
   color: white;
   border: solid;
   border-color: white;
@@ -127,8 +127,8 @@ h2 {
 h1 {
   position:absolute;
   font-size: 3em;
-  top: 23%;
-  left: 13%;
+  top: 9.5rem;
+  left: 10rem;
   color:white;
   font-family: "Pangolin", sans-serif;
 }
@@ -151,9 +151,9 @@ h1 {
 
 #logo {
   position: absolute;
-  top: 22%;
-  left: 6.5%;
-  height: 15vh;
+  top: 11rem;
+  left: 4rem;
+  height: 7.2rem;
 }
 
 </style>
