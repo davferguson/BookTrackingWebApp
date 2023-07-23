@@ -25,8 +25,10 @@ export default {
         return axios.post('/log_reading', readingActivity);
 
     },
-
     submitBook(addedBook) {
         return axios.post(`/add_book`, addedBook);
+    },
+    searchApiByTitle(keywords) {
+        return axios.post('/book_search', keywords);
     }
 }
