@@ -114,14 +114,14 @@ export default {
 
 .form-register{
   position:absolute;
-  top:30%;
-  left: 8%;
+  top: 15rem;
+  left: 5rem;
   color: white;
   border: solid;
   border-color: white;
   border-width: 1px;
   border-radius: 3px;
-  padding-right: 60px;
+  padding-right: 112px;
   padding-left: 10px;
   padding-top: 6px;
   padding-bottom: 10px;
@@ -135,10 +135,10 @@ export default {
 }
 
 h1 {
-  font-size: 3em;
   position:absolute;
-  top: 23%;
-  left: 13%;
+  font-size: 3em;
+  top: 9.5rem;
+  left: 10rem;
   color:white;
   font-family: "Pangolin", sans-serif;
 }
@@ -173,9 +173,9 @@ h2 {
 
 #logo {
   position: absolute;
-  top: 22%;
-  left: 6.5%;
-  height: 15vh;
+  top: 11rem;
+  left: 4rem;
+  height: 7.2rem;
 }
 
 </style>
