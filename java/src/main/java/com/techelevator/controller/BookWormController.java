@@ -4,6 +4,7 @@ import com.techelevator.Service.*;
 import com.techelevator.dao.UserDao;
 import com.techelevator.model.*;
 import com.techelevator.model.User.User;
+import com.techelevator.model.openlibraryAPI.SearchResult;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import org.springframework.web.client.RestTemplate;
 import javax.validation.Valid;
 import java.security.Principal;
 import java.sql.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -38,7 +40,7 @@ public class BookWormController {
 //    @PreAuthorize("isAuthenticated()")
     @ResponseStatus(HttpStatus.ACCEPTED)
     @RequestMapping(value = "/book_search", method = RequestMethod.POST)
-    public String[] bookTitleSearch(@RequestBody String[] keywords) {
+    public SearchResult bookTitleSearch(@RequestBody String[] keywords) {
         String url = "https://openlibrary.org/search.json?title=";
         for(int i = 0; i < keywords.length; i++){
             url += keywords[i];
@@ -49,7 +51,17 @@ public class BookWormController {
         RestTemplate restTemplate = new RestTemplate();
         BookSearchAPI bookSearchAPI = restTemplate.getForObject(url, BookSearchAPI.class);
 
-        return new String[]{Integer.toString(bookSearchAPI.getNumFound()), bookSearchAPI.getDocs().get(0).getIsbn()[0]};
+        SearchResult searchResult = new SearchResult();
+        searchResult.setNumFound(bookSearchAPI.getNumFound());
+        List<Book> books = new ArrayList<>();
+        for(int i = 0; i < 10 && i < bookSearchAPI.getNumFound(); i++){
+            Book book = new Book();
+            book.setIsbn(bookSearchAPI.getDocs().get(i).getIsbn()[0]);
+            books.add(book);
+        }
+        searchResult.setBooks(books);
+
+        return searchResult;
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")

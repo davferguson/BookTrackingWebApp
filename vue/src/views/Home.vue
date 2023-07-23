@@ -8,9 +8,9 @@
       <input name="title" type="text" placeholder="Enter title" v-model="customSearch"/>
       <button v-on:click.prevent="searchTitle()">Search</button>
     </form>
-    <p>Search: {{ search }}</p>
-    <p>ISBM: {{ isbn }}</p>
-    <img v-if="isbn" v-bind:src="'http://covers.openlibrary.org/b/isbn/' + isbn + '-M.jpg'" />
+    <p v-if="searchResult.books!=''">ISBN: {{ searchResult.books[0].isbn }}</p>
+    <img v-if="searchResult.books!=''" v-bind:src="'http://covers.openlibrary.org/b/isbn/' + searchResult.books[0].isbn + '-M.jpg'" />
+
   </div>
   <NavBar/>
   
@@ -18,7 +18,6 @@
 </template>
 
 <script>
-//import theFamily from '../views/Family.vue';
 import NavBar from '@/components/NavBar.vue';
 import BookService from '../services/BookService';
 
@@ -32,7 +31,10 @@ export default {
     return {
       username: this.$store.state.user.username,
       customSearch: '',
-      isbn: ''
+      searchResult: {
+        numFound: '',
+        books: []
+      }
     }
   },
   methods: {
@@ -40,16 +42,13 @@ export default {
       const search = this.customSearch.split(' ')
       console.log(search)
       BookService.searchApiByTitle(search).then(response => {
-      this.isbn = response.data[1];
+      this.searchResult = response.data;
     })
     },
   },
   created() {
     BookService.list(this.user).then(response => {
       this.$store.state.allBooks = response.data;
-    }),
-    BookService.searchApiByTitle(this.search).then(response => {
-      this.isbn = response.data[1];
     })
   }
 };
