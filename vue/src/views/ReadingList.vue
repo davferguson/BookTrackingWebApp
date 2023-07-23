@@ -17,7 +17,8 @@
         </form>
         </div>
         <!-- <BookInfo/> -->
-        <BookList v-bind:books="$store.state.allBooks"/>
+        <BookList v-if="hasBooks" v-bind:books="$store.state.allBooks"/>
+        
         <button class="addbook_btn" id="addbook" v-on:click="setReadingActivitytoTrue()">Add a Book!</button>
     </div>
 
@@ -45,6 +46,7 @@ export default {
         return {
             username: this.$store.state.user.username,
             addReadingActivity: false,
+            hasBooks: false,
             addedBook: {
                 book_name: "",
                 isbn: "",
@@ -72,6 +74,9 @@ export default {
     created() {
             BookService.list(this.user).then(response => {
                 this.$store.state.bookCompleted = response.data;
+                if(response.data != ""){
+                    this.hasBooks = true;
+                }
             })
         }
 }
