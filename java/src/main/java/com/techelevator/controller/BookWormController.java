@@ -4,9 +4,12 @@ import com.techelevator.Service.*;
 import com.techelevator.dao.UserDao;
 import com.techelevator.model.*;
 import com.techelevator.model.User.User;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import javax.validation.Valid;
 import java.security.Principal;
@@ -30,6 +33,18 @@ public class BookWormController {
         this.readingService = readingService;
         this.userService = userService;
         this.prizeService = prizeService;
+    }
+
+//    @PreAuthorize("isAuthenticated()")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    @RequestMapping(value = "/booksearch", method = RequestMethod.GET)
+    public String bookTitleSearch(Principal curUser) {
+        String url = "https://openlibrary.org/search.json?title=rent+collector";
+        RestTemplate restTemplate = new RestTemplate();
+
+        BookSearchAPI bookSearchAPI = restTemplate.getForObject(url, BookSearchAPI.class);
+        System.out.println(bookSearchAPI.getDocs().get(0).getIsbn()[0]);
+        return bookSearchAPI.getDocs().get(0).getIsbn()[0];
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")

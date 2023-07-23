@@ -28,8 +28,8 @@ export default {
   },
   created() {
     BookService.list(this.user).then(response => {
-                this.$store.state.allBooks = response.data;
-            })
+      this.$store.state.allBooks = response.data;
+    })
   }
 };
 </script>
