@@ -110,4 +110,7 @@ img {
   font-family: "Mouse Memoirs", sans-serif;
   font-size: 1.8rem;
 }
+.addbook_btn:hover {
+    background-color: #4a305e;
+}
 </style>
