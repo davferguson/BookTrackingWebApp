@@ -37,6 +37,14 @@
         v-model="user.confirmPassword"
         required
       />
+      <br/>
+      <label for="parentOrChild" class="sr-only">Are you a parent?: &nbsp;</label>
+      <input
+        type="checkbox"
+        id="parentOrChild"
+        class="form-control"
+        v-model="isParent"
+      />
       <div id="createaccountbtn">
       <button class="btn btn-lg btn-primary btn-block" type="submit">
         Create Account
@@ -60,6 +68,7 @@ export default {
   name: 'register',
   data() {
     return {
+      isParent: false,
       user: {
         username: '',
         password: '',
@@ -77,9 +86,13 @@ export default {
         this.registrationErrorMsg = 'Password & Confirm Password do not match.';
       } else {
         
-        // set ADMIN role by default
-        this.user.role = 'ROLE_ADMIN';
-
+        // set role
+        if(this.isParent){
+          this.user.role = 'ROLE_ADMIN';
+        } else {
+          this.user.role = 'ROLE_USER'
+        }
+        
         authService
           .register(this.user)
           .then((response) => {
