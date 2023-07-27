@@ -41,7 +41,7 @@ public class BookWormController {
     @ResponseStatus(HttpStatus.ACCEPTED)
     @RequestMapping(value = "/book_search", method = RequestMethod.POST)
     public SearchResult bookTitleSearch(@RequestBody String[] keywords) {
-        String url = "https://openlibrary.org/search.json?title=";
+        String url = "https://openlibrary.org/search.json?q=";
         for(int i = 0; i < keywords.length; i++){
             url += keywords[i];
             if(i != keywords.length-1){

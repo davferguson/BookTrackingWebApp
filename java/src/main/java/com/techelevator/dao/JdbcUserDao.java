@@ -196,6 +196,9 @@ public class JdbcUserDao implements UserDao {
     public int minutesReadFromISBN(int userId, String ISBN){
         String sql = "SELECT sum(minutes_read) as totalMinutes FROM reading_details WHERE isbn = ? AND user_id = ?";
         Integer totalMinutes = jdbcTemplate.queryForObject(sql, Integer.class, ISBN, userId);
+        if(totalMinutes == null){
+            totalMinutes = 0;
+        }
         return totalMinutes;
     }
 
