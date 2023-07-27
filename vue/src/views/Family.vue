@@ -26,7 +26,7 @@
         />
       </div>
 
-      <div>
+      <div v-if="isAdmin">
         <p id="AddChild">Create a child account</p>
         <form>
           <input
@@ -47,7 +47,7 @@
         </form>
       </div>
 
-      <div>
+      <div v-if="isAdmin">
         <p id="AddFamily">Add a family member</p>
         <form>
           <input
@@ -78,6 +78,7 @@ export default {
   data() {
     return {
       registered: false,
+      isAdmin: false,
       username: this.$store.state.user.username,
       family: {
         familyName: ""
@@ -103,7 +104,10 @@ export default {
           this.$store.state.familyMembers = response.data;
         });
       }
-    )
+    );
+    if(this.$store.state.user.authorities[0].name == 'ROLE_ADMIN'){
+      this.isAdmin = true;
+    }
   },
 
   computed:  {
@@ -120,9 +124,7 @@ export default {
       this.child.username = "";
       this.child.password = "";
       this.child.confirmPassword = "";
-        },
-  
-
+    },
     registerFamily() {
       FamilyService.registerFamily(this.family).then((response) => {
         if (response.status === 201) {
