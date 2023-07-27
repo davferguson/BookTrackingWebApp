@@ -95,9 +95,17 @@ export default {
         isSelected(){
             return this.$store.state.currentlyReadingSelectedBook == this.book.isbn;
         },
-        totalMinutes(){
-            return this.$store.state.curBookMinutesRead;
+        totalMinutes: {
+            get: function () {
+                return this.$store.state.curBookMinutesRead;
+            },
+            set: function (val) {
+                this.minutes_read = val;
+            }
         },
+        // totalMinutes(){
+        //     return this.$store.state.curBookMinutesRead;
+        // },
         minutes(){
             return this.totalMinutes % 60;
         },

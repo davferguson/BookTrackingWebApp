@@ -17,7 +17,6 @@ export default {
     },
     data() {
         return {
-            url: "/book/" + this.book.isbn
 
         }
     },
