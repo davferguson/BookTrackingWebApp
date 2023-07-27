@@ -189,6 +189,9 @@ h2 {
   font-family: "Mouse Memoirs", sans-serif;
   font-size: 1rem;
 }
+.addbook_btn:hover {
+    background-color: #4a305e;
+}
 #filter_form {
     background-color: #3a2649;
 }
