@@ -183,6 +183,12 @@ h2 {
     height:45rem;
     width: 70vw;
 }
+.addbook_btn {
+  background-color: #22162B;
+  color: #f8c630;
+  font-family: "Mouse Memoirs", sans-serif;
+  font-size: 1rem;
+}
 #filter_form {
     background-color: #3a2649;
 }
