@@ -5,10 +5,8 @@
         </div>
         <div class="info">
             {{ book.book_name }}<br>
-            Author {{ book.author }}<br>
-            ISBN {{ book.isbn }}<br>
-            minutes read: {{ this.minutes_read }}<br>
-            finished?:
+            Author: {{ book.author }}<br>
+            ISBN: {{ book.isbn }}<br>
         </div>
     </div>
 </template>

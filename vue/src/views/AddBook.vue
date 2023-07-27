@@ -8,9 +8,9 @@
                 <input name="search" type="text" placeholder="Enter title, author, or isbn" v-model="customSearch"/>
                 <button v-on:click.prevent="searchTitle()">Search</button>
             </form>
-            <p v-if="searchResult.books!=''">ISBN: {{ searchResult.books[0].isbn }}</p>
-            <img v-if="searchResult.books!=''" v-bind:src="'http://covers.openlibrary.org/b/isbn/' + searchResult.books[0].isbn + '-M.jpg'" />
-        
+            <!-- <p v-if="searchResult.books!=''">ISBN: {{ searchResult.books[0].isbn }}</p>
+            <img v-if="searchResult.books!=''" v-bind:src="'http://covers.openlibrary.org/b/isbn/' + searchResult.books[0].isbn + '-M.jpg'" /> -->
+            <BookList v-if="searchResult.books!=null" v-bind:books="searchResult.books" />
         </div>
     
     
@@ -19,12 +19,14 @@
   <script>
   import NavBar from '@/components/NavBar.vue';
   import BookService from '../services/BookService';
+  import BookList from '@/components/BookList.vue';
   
   export default {
     name: "home",
     components: {
       //theFamily,
-      NavBar
+      NavBar,
+      BookList
     },
     data() {
       return {
