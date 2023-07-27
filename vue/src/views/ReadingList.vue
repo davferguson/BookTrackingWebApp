@@ -19,7 +19,8 @@
         <!-- <BookInfo/> -->
         <BookList v-if="hasBooks" v-bind:books="$store.state.allBooks"/>
         
-        <button class="addbook_btn" id="addbook" v-on:click="setReadingActivitytoTrue()">Add a Book!</button>
+        <!-- <button class="addbook_btn" id="addbook" v-on:click="setReadingActivitytoTrue()">Add a Book!</button> -->
+        <router-link class="addbook_btn" :to="{ name: 'addbook' }">Add a Book!</router-link>
     </div>
 
  

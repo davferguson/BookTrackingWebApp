@@ -10,6 +10,7 @@ import Profile from '../views/Profile.vue'
 import ActionCompleted from '../views/ActionCompleted.vue'
 import ReadingList from '../views/ReadingList.vue'
 import Prizes from '../views/Prizes.vue'
+import AddBook from '../views/AddBook.vue'
 
 Vue.use(Router)
 
@@ -40,6 +41,14 @@ const router = new Router({
       component: ActionCompleted,
       meta: {
         requiresAuth: true
+      }
+    },
+    {
+      path: "/addbook",
+      name: "addbook",
+      component: AddBook,
+      meta: {
+        requiresAuth: false
       }
     },
     {
