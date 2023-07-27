@@ -56,7 +56,13 @@ public class BookWormController {
         List<Book> books = new ArrayList<>();
         for(int i = 0; i < 10 && i < bookSearchAPI.getNumFound(); i++){
             Book book = new Book();
-            book.setIsbn(bookSearchAPI.getDocs().get(i).getIsbn()[0]);
+            if(bookSearchAPI.getDocs().get(i).getIsbn() != null){
+                book.setIsbn(bookSearchAPI.getDocs().get(i).getIsbn()[0]);
+            }
+            book.setBook_name(bookSearchAPI.getDocs().get(i).getTitle());
+            if(bookSearchAPI.getDocs().get(i).getAuthor() != null){
+                book.setAuthor(bookSearchAPI.getDocs().get(i).getAuthor()[0]);
+            }
             books.add(book);
         }
         searchResult.setBooks(books);
