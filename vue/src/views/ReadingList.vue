@@ -17,9 +17,12 @@
         </form>
         </div>
         <!-- <BookInfo/> -->
-        <BookList v-if="hasBooks" :books="$store.state.allBooks" :isAddBook='false' :isRemoveBook='true'/>
-        
-        <!-- <button class="addbook_btn" id="addbook" v-on:click="setReadingActivitytoTrue()">Add a Book!</button> -->
+        <form id="filter_form">
+            <input id="filter_input" name="filter" type="text" placeholder="Enter title" v-model="searchFilter"/>
+            <button class="addbook_btn" v-on:click.prevent="filterBooks()">Filter books</button>
+            <button class="addbook_btn" v-on:click.prevent="clearFilter()">Clear</button>
+        </form>
+        <BookList v-if="hasBooks" :books="filteredBooks" :isAddBook='false' :isRemoveBook='true'/>
         <router-link class="addbook_btn" :to="{ name: 'addbook' }">Add a Book!</router-link>
     </div>
 
@@ -54,14 +57,25 @@ export default {
                 author: "",
                 numberofpages: "",
                 format: ""
-            }
+            },
+            allBooks: this.$store.state.allBooks,
+            // allBooks: [{book_name: 'test'},{book_name: 'The'},{book_name: 'The'},],
+            filteredBooks: this.$store.state.allBooks,
+            searchFilter: '',
         }
 },
     methods: {
+        filterBooks() {
+            let vm = this;
+            this.filteredBooks = this.allBooks.filter(function (book) { return book.book_name.toUpperCase().includes(vm.searchFilter.toUpperCase()); });
+        },
+        clearFilter() {
+            this.filteredBooks = this.allBooks;
+            this.searchFilter = '';
+        },
         setReadingActivitytoTrue() {
             this.addReadingActivity = true;
         },
-
         submitAddedBook() {
             BookService
             .submitBook(this.addedBook).then(response => {
@@ -91,6 +105,13 @@ export default {
   color: #f8c630;
   font-family: "Mouse Memoirs", sans-serif;
   font-size: 1.8rem;
+}
+#filter_input {
+    height: 1.8rem;
+    font-size: 1.8rem;
+}
+#filter_form {
+    background-color: #22162B;
 }
 .bookAdded {
     height:40px;
