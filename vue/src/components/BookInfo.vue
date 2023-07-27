@@ -8,6 +8,7 @@
             {{ book.book_name }}<br>
             Author: {{ book.author }}<br>
             ISBN: {{ book.isbn }}<br>
+            <button v-if="isAddBook" class="addbook_btn" v-on:click.prevent="addBook()">Add Book</button>
         </div>
     </div>
 </template>
@@ -19,6 +20,7 @@ export default {
     name: 'book-info',
     props: {
         book: Object,
+        isAddBook: Boolean
     },
     data() {
         return {
@@ -41,8 +43,15 @@ export default {
             if(curImg.height == 1){
                 this.imageAvailable = false;
             }
-            console.log(curImg.height);
-        } 
+        },
+        addBook() {
+            BookService
+            .submitBook(this.book).then(response => {
+
+                if (response.status === 201) {
+                    this.$router.push('/actioncompleted')
+                }
+        })},
     },
     created() {
         BookService.minutesRead(this.readingActivity.username, this.readingActivity.isbn).then(response => {
@@ -84,5 +93,11 @@ img {
     font-family: "Mouse Memoirs", sans-serif;
     text-align: center;
     font-size: 1.5rem;
+}
+.addbook_btn {
+  background-color: #22162B;
+  color: #f8c630;
+  font-family: "Mouse Memoirs", sans-serif;
+  font-size: 1.8rem;
 }
 </style>
