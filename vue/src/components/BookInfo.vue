@@ -1,7 +1,8 @@
 <template>
     <div class="container">
         <div class="img">
-            <img v-bind:src="'http://covers.openlibrary.org/b/isbn/' + book.isbn + '-M.jpg'"/>
+            <img @load="onImageLoad" v-if="imageAvailable" id="cover_image" v-bind:src="'http://covers.openlibrary.org/b/isbn/' + book.isbn + '-M.jpg'"/>
+            <img v-if="!imageAvailable" src="No-Image-Placeholder.png"/>
         </div>
         <div class="info">
             {{ book.book_name }}<br>
@@ -24,6 +25,7 @@ export default {
             url: "/book/" + this.book.isbn,
             user: this.$store.state.user,
             minutes_read: 0,
+            imageAvailable: true,
             readingActivity: {
               username: this.$store.state.user.username, 
               minutes_read: "",
@@ -32,7 +34,15 @@ export default {
 
         }
     },
-    methods: {    
+    methods: {  
+        onImageLoad() {
+            const curImg = new Image();
+            curImg.src = 'http://covers.openlibrary.org/b/isbn/' + this.book.isbn + '-M.jpg';
+            if(curImg.height == 1){
+                this.imageAvailable = false;
+            }
+            console.log(curImg.height);
+        } 
     },
     created() {
         BookService.minutesRead(this.readingActivity.username, this.readingActivity.isbn).then(response => {
