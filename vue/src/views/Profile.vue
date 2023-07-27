@@ -13,7 +13,12 @@
         </form>
             <h2>Your Books:</h2>
             <div v-on:click="onClickBooks()">
-            <record-reading class="allBooks" v-bind:books="$store.state.allBooks"/>
+            <form id="filter_form">
+                <input id="filter_input" name="filter" type="text" placeholder="Enter title" v-model="searchFilter"/>
+                <button class="addbook_btn" v-on:click.prevent="filterBooks()">Filter books</button>
+                <button class="addbook_btn" v-on:click.prevent="clearFilter()">Clear</button>
+            </form>
+            <record-reading class="allBooks" v-bind:books="filteredBooks"/>
             </div>
             <div class="container">
                 <h2 class="item">
@@ -63,10 +68,21 @@ export default {
               username: "", 
               minutes_read: "",
               isbn: ""
-          }
+          },
+          searchFilter: '',
+          filteredBooks: this.$store.state.allBooks,
+          allBooks: this.$store.state.allBooks,
     }
 },
     methods: {
+        filterBooks() {
+            let vm = this;
+            this.filteredBooks = this.allBooks.filter(function (book) { return book.book_name.toUpperCase().includes(vm.searchFilter.toUpperCase()); });
+        },
+        clearFilter() {
+            this.filteredBooks = this.allBooks;
+            this.searchFilter = '';
+        },
         setReadingActivitytoTrue() {
             this.addReadingActivity = true;
         },
@@ -166,5 +182,8 @@ h2 {
     /* background: #22162B; */
     height:45rem;
     width: 70vw;
+}
+#filter_form {
+    background-color: #3a2649;
 }
 </style>
