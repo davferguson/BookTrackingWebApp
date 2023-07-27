@@ -77,7 +77,6 @@ export default {
   },
   data() {
     return {
-      familyReading: "",
       registered: false,
       username: this.$store.state.user.username,
       family: {
@@ -104,11 +103,7 @@ export default {
           this.$store.state.familyMembers = response.data;
         });
       }
-    ),
-
-     FamilyService.getReadingActivity(this.$store.state.familyMembers).then((response) => {
-        this.familyReading = response.data;
-      })
+    )
   },
 
   computed:  {
