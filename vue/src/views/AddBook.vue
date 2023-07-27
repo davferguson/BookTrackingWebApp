@@ -4,9 +4,9 @@
       <NavBar/>
         <div class="add_book_window">
             <h3>Search for books!</h3>
-            <form>
-                <input name="search" type="text" placeholder="Enter title, author, or isbn" v-model="customSearch"/>
-                <button v-on:click.prevent="searchTitle()">Search</button>
+            <form id="filter_form">
+                <input id="filter_input" name="search" type="text" placeholder="Enter title, author, or isbn" v-model="customSearch"/>
+                <button class="addbook_btn" v-on:click.prevent="searchTitle()">Search</button>
             </form>
             <!-- <p v-if="searchResult.books!=''">ISBN: {{ searchResult.books[0].isbn }}</p>
             <img v-if="searchResult.books!=''" v-bind:src="'http://covers.openlibrary.org/b/isbn/' + searchResult.books[0].isbn + '-M.jpg'" /> -->
@@ -63,14 +63,27 @@
   margin: 0;
   font-family: "Mouse Memoirs", sans-serif;
 }
-  .add_book_window {
-    text-align: center;
-    position:absolute;
-    top:50px;
-    left:18%;
-    background: rgba(114,78,145,0.7);
-    height:45rem;
-    width: 70vw;
-  }
+.add_book_window {
+  text-align: center;
+  position:absolute;
+  top:50px;
+  left:18%;
+  background: rgba(114,78,145,0.7);
+  height:45rem;
+  width: 70vw;
+}
+.addbook_btn {
+  background-color: #22162B;
+  color: #f8c630;
+  font-family: "Mouse Memoirs", sans-serif;
+  font-size: 1.8rem;
+}
+#filter_form {
+    background-color: #3a2649;
+}
+#filter_input {
+    height: 1.8rem;
+    font-size: 1.8rem;
+}
   
   </style>
