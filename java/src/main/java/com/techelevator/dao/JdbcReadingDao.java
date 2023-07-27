@@ -1,5 +1,6 @@
 package com.techelevator.dao;
 
+import com.techelevator.model.Book;
 import com.techelevator.model.Reading;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
@@ -20,5 +21,11 @@ public class JdbcReadingDao implements ReadingDao{
 
             jdbcTemplate.update(sql,  reading.getUser_id(), reading.getBook_id(), reading.getIsbn(), reading.getMinutes_read());
 
+    }
+
+    @Override
+    public void removeReadingLog(Book book, int userId) {
+        String sql = "DELETE FROM reading_details WHERE book_id = ? AND user_id = ?";
+        jdbcTemplate.update(sql, book.getBook_id(), userId);
     }
 }
