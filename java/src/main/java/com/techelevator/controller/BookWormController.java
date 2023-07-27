@@ -115,6 +115,15 @@ public class BookWormController {
 //        bookService.createBook(isbn, curUser.getName());
         bookService.createBook(newBook, curUser.getName());
     }
+    @PreAuthorize("isAuthenticated()")
+    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(value = "/remove_book", method = RequestMethod.POST)
+    public void removeBook(@RequestBody Book book, Principal curUser){
+//        String newString = Isbn.replaceAll("=", "");
+//        String isbn = newBook.getIsbn();
+//        bookService.createBook(isbn, curUser.getName());
+        bookService.removeBook(book, curUser.getName());
+    }
 
     @PreAuthorize("isAuthenticated()")
     @ResponseStatus(HttpStatus.CREATED)

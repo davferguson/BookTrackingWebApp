@@ -9,7 +9,7 @@
             Author: {{ book.author }}<br>
             ISBN: {{ book.isbn }}<br>
             <button v-if="isAddBook" class="addbook_btn" v-on:click.prevent="addBook()">Add Book</button>
-            <button v-if="isRemoveBook" class="addbook_btn">Remove Book</button>
+            <button v-if="isRemoveBook" class="addbook_btn" v-on:click.prevent="removeBook()">Remove Book</button>
         </div>
     </div>
 </template>
@@ -47,7 +47,12 @@ export default {
             }
         },
         removeBook(){
-
+            BookService
+            .removeBook(this.book).then(response => {
+                if (response.status === 200) {
+                    this.$router.push('/actioncompleted')
+                }
+            })
         },
         addBook() {
             BookService

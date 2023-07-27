@@ -28,6 +28,9 @@ export default {
     submitBook(addedBook) {
         return axios.post(`/add_book`, addedBook);
     },
+    removeBook(removedBook) {
+        return axios.post('/remove_book', removedBook);
+    },
     searchApiByTitle(keywords) {
         return axios.post('/book_search', keywords);
     }
