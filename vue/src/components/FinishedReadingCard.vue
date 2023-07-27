@@ -1,6 +1,7 @@
 <template>
   <div class="card" v-bind:class="{ selected: isSelected }">
-    <img v-on:click="selectBook()" v-if="book.isbn" v-bind:src="'http://covers.openlibrary.org/b/isbn/' + book.isbn + '-M.jpg'" />
+    <img @load="onImageLoad" v-on:click="selectBook()" v-if="book.isbn&&imageAvailable" v-bind:src="'http://covers.openlibrary.org/b/isbn/' + book.isbn + '-M.jpg'" />
+    <div v-on:click="selectBook()" id="nocover" v-else >{{ book.book_name }}<p>{{ book.author }}</p></div>
     <div v-on:click="selectBook()" v-bind:class="{ 'color-overlay': isSelected }"></div>
     <form v-show="isSelected" class="centered">
         <!-- <label for="time-read">Minutes Read:</label><br> -->
@@ -22,6 +23,7 @@ export default {
         return {
             url: "/book/" + this.book.isbn,
             minutes_read: "",
+            imageAvailable: true,
             readingActivity: {
                 user_id: "",
                 book_id: "",
@@ -33,6 +35,13 @@ export default {
         }
     },
     methods: {
+        onImageLoad() {
+            const curImg = new Image();
+            curImg.src = 'http://covers.openlibrary.org/b/isbn/' + this.book.isbn + '-M.jpg';
+            if(curImg.height == 1){
+                this.imageAvailable = false;
+            }
+        },
         selectBook(){
             if(this.$store.state.currentlyReadingSelectedBook == this.book.isbn){
                 this.$store.commit('SET_CURRENTLY_READING_SELECTED_BOOK', "")
@@ -74,7 +83,11 @@ p {
     font-size: 1.1rem;
     margin: 1px;
 }
-
+#nocover {
+    height: 98%;
+    font-size: 1.5rem;
+    color: white;
+}
 #time-read {
     width: 5rem;
 }

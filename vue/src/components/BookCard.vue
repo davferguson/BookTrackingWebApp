@@ -1,6 +1,6 @@
 <template>
   <div class="card" :class="{ selected: isSelected }">
-    <img v-on:click="selectBook()" v-if="book.isbn" v-bind:src="'http://covers.openlibrary.org/b/isbn/' + book.isbn + '-M.jpg'" />
+    <img @load="onImageLoad" v-on:click="selectBook()" v-if="book.isbn&&imageAvailable" v-bind:src="'http://covers.openlibrary.org/b/isbn/' + book.isbn + '-M.jpg'" />
     <div v-on:click="selectBook()" id="nocover" v-else >{{ book.book_name }}<p>{{ book.author }}</p></div>
     <div v-on:click="selectBook()" v-bind:class="{ 'color-overlay': isSelected }"></div>
     <p class="centered">Log Reading:</p>
@@ -25,6 +25,7 @@ export default {
         return {
             url: "/book/" + this.book.isbn,
             user: this.$store.state.user,
+            imageAvailable: true,
             readingActivity: {
               username: this.$store.state.user.username, 
               minutes_read: "",
@@ -34,6 +35,13 @@ export default {
         }
     },
     methods: {
+        onImageLoad() {
+            const curImg = new Image();
+            curImg.src = 'http://covers.openlibrary.org/b/isbn/' + this.book.isbn + '-M.jpg';
+            if(curImg.height == 1){
+                this.imageAvailable = false;
+            }
+        },
         selectBook(){
             if(this.$store.state.selectedBook != this.book.isbn){
                 this.$store.commit('SET_SELECTED_BOOK', this.book.isbn)
