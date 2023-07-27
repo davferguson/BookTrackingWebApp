@@ -9,6 +9,7 @@
             Author: {{ book.author }}<br>
             ISBN: {{ book.isbn }}<br>
             <button v-if="isAddBook" class="addbook_btn" v-on:click.prevent="addBook()">Add Book</button>
+            <button v-if="isRemoveBook" class="addbook_btn">Remove Book</button>
         </div>
     </div>
 </template>
@@ -20,7 +21,8 @@ export default {
     name: 'book-info',
     props: {
         book: Object,
-        isAddBook: Boolean
+        isAddBook: Boolean,
+        isRemoveBook: Boolean
     },
     data() {
         return {
@@ -43,6 +45,9 @@ export default {
             if(curImg.height == 1){
                 this.imageAvailable = false;
             }
+        },
+        removeBook(){
+
         },
         addBook() {
             BookService

@@ -17,7 +17,7 @@
         </form>
         </div>
         <!-- <BookInfo/> -->
-        <BookList v-if="hasBooks" :books="$store.state.allBooks" :isAddBook='false'/>
+        <BookList v-if="hasBooks" :books="$store.state.allBooks" :isAddBook='false' :isRemoveBook='true'/>
         
         <!-- <button class="addbook_btn" id="addbook" v-on:click="setReadingActivitytoTrue()">Add a Book!</button> -->
         <router-link class="addbook_btn" :to="{ name: 'addbook' }">Add a Book!</router-link>

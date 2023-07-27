@@ -2,7 +2,7 @@
     <div>
     
         <div class="book-container">
-            <BookInfo :isAddBook='isAddBook' :book="book" v-for="book in books" :key="book.isbn" />
+            <BookInfo :isAddBook='isAddBook' :isRemoveBook='isRemoveBook' :book="book" v-for="book in books" :key="book.isbn" />
         </div>
     </div>
       
@@ -15,7 +15,8 @@
         name: 'book-list',
         props: {
             books: Array,
-            isAddBook: Boolean
+            isAddBook: Boolean,
+            isRemoveBook: Boolean
         },
         components: {
             BookInfo

@@ -10,7 +10,7 @@
             </form>
             <!-- <p v-if="searchResult.books!=''">ISBN: {{ searchResult.books[0].isbn }}</p>
             <img v-if="searchResult.books!=''" v-bind:src="'http://covers.openlibrary.org/b/isbn/' + searchResult.books[0].isbn + '-M.jpg'" /> -->
-            <BookList v-if="searchResult.books!=null" :books="searchResult.books" :isAddBook='true'/>
+            <BookList v-if="searchResult.books!=null" :books="searchResult.books" :isAddBook='true' :isRemoveBook='false'/>
         </div>
     
     
