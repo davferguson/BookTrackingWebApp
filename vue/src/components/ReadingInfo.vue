@@ -55,7 +55,7 @@ export default {
 
 .familymembers {
     width: 50%;
-    background: rgba(255, 253, 253, 0.521);
+    background: #fffdfd85;
     position:relative;
     margin: 0 auto;
     margin-bottom: 5px;
@@ -64,7 +64,10 @@ export default {
     font-family: "Mouse Memoirs", sans-serif;
     border-radius: 15px;
     border: solid;
-    border-color: white;
+    border-color: #22162B;
+}
+.familymembers:hover {
+    background-color: #b3adad85;
 }
 
 </style>

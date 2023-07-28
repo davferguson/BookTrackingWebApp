@@ -163,6 +163,9 @@ export default {
   font-family: "Mouse Memoirs", sans-serif;
   font-size: 1.2rem;
 }
+.submit_btn:hover {
+    background-color: #4a305e;
+}
 
 .familywindow {
   text-align: center;
@@ -170,7 +173,7 @@ export default {
   top: 50px;
   left: 18%;
   background: rgba(114, 78, 145, 0.7);
-  height: 28rem;
+  height: 45rem;
   width: 70vw;
 }
 
