@@ -148,7 +148,7 @@ public class BookWormController {
         userService.updateBookStatus(userDao.findIdByUsername(curUser.getName()), bookService.getIdByIsbn(data.get(0)), data.get(1));
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("isAuthenticated()")
     @ResponseStatus(HttpStatus.ACCEPTED)
     @RequestMapping(value = "/check_reading_activity/{username}", method = RequestMethod.GET)
     public ReadingActivity checkReadingActivity(@PathVariable String username) {
