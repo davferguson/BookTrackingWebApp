@@ -17,12 +17,14 @@ public interface UserDao {
     int findIdByUsername(String username);
 
     boolean create(String username, String password, String role);
+    void deleteUser(int userId);
 
     void createFamilyAccount(String familyName, int userId);
 
     String getFamilyNameForUsername(String username);
 
     void addFamilyMember(int curId, int addedId);
+    void removeFamilyMember(int userId);
 
     void updateBookStatus(int userId, int bookId, String status);
 

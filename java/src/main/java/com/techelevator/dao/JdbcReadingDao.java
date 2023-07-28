@@ -28,4 +28,10 @@ public class JdbcReadingDao implements ReadingDao{
         String sql = "DELETE FROM reading_details WHERE book_id = ? AND user_id = ?";
         jdbcTemplate.update(sql, book.getBook_id(), userId);
     }
+
+    @Override
+    public void removeAllReadingLogs(int userId) {
+        String sql = "DELETE FROM reading_details WHERE user_id = ?";
+        jdbcTemplate.update(sql, userId);
+    }
 }

@@ -96,6 +96,12 @@ public class JdbcBookDao implements BookDao{
         jdbcTemplate.update(sql, book.getBook_id(), userId);
     }
 
+    @Override
+    public void removeAllBooks(int userId) {
+        String sql = "DELETE FROM book_user WHERE user_id = ?";
+        jdbcTemplate.update(sql, userId);
+    }
+
     public int getIdByIsbn(String Isbn){
         String sql = "SELECT book_id FROM book WHERE isbn = ?";
         return jdbcTemplate.queryForObject(sql, Integer.class, Isbn);

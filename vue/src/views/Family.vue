@@ -9,7 +9,7 @@
       </div>
       <reading-info v-for="member in this.$store.state.familyMembers"
       v-bind:key="member.user_id" v-bind:curUser="member"/>
-      <div v-if="!isRegistered">
+      <div v-if="!isRegistered&&isAdmin">
         <p id="RegisterFamily">Register your family!</p>
         <input
           type="text"

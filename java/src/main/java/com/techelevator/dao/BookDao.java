@@ -8,6 +8,7 @@ public interface BookDao {
 
     void createBook(Book book, int userId);
     void removeBook(Book book, int userId);
+    void removeAllBooks(int userId);
 
     List<Book> userReadingList(int userId);
 

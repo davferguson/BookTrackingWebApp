@@ -122,6 +122,16 @@ public class BookWormController {
         bookService.removeBook(book, curUser.getName());
         readingService.removeReadingLog(book, curUser.getName());
     }
+    @PreAuthorize("isAuthenticated()")
+    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(value = "/delete_user", method = RequestMethod.POST)
+    public void deleteUser(Principal curUser){
+        bookService.removeAllBooks(curUser.getName());
+        readingService.removeAllReadingLogs(curUser.getName());
+        userService.removeFamilyMember(curUser.getName());
+        userService.deleteUser(curUser.getName());
+        System.out.println("DELETED.");
+    }
 
     @PreAuthorize("isAuthenticated()")
     @ResponseStatus(HttpStatus.CREATED)

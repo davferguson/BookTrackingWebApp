@@ -11,6 +11,7 @@ import ActionCompleted from '../views/ActionCompleted.vue'
 import ReadingList from '../views/ReadingList.vue'
 import Prizes from '../views/Prizes.vue'
 import AddBook from '../views/AddBook.vue'
+import Settings from '../views/Settings.vue'
 
 Vue.use(Router)
 
@@ -106,8 +107,15 @@ const router = new Router({
       meta: {
         requiresAuth: true
       }
+    },
+    {
+      path: "/settings",
+      name: "settings",
+      component: Settings,
+      meta: {
+        requiresAuth: true
+      }
     }
-
   ]
 })
 

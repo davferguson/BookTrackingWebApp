@@ -87,6 +87,12 @@ public class JdbcUserDao implements UserDao {
     }
 
     @Override
+    public void deleteUser(int userId) {
+        String sql = "DELETE FROM users WHERE user_id = ?";
+        jdbcTemplate.update(sql, userId);
+    }
+
+    @Override
     public void createFamilyAccount(String familyName, int userId) {
         String sql = "INSERT INTO family_account (family_name) values (?) RETURNING family_id";
         Integer familyId = 0;
@@ -127,6 +133,12 @@ public class JdbcUserDao implements UserDao {
 
         sql = "INSERT INTO family_user (family_id, user_id) values (?, ?)";
         jdbcTemplate.update(sql, familyId, addedId);
+    }
+
+    @Override
+    public void removeFamilyMember(int userId) {
+        String sql = "DELETE FROM family_user WHERE user_id = ?";
+        jdbcTemplate.update(sql, userId);
     }
 
     @Override

@@ -1,10 +1,10 @@
 <template>
   <div>
     <img class="homebackground" src="living-room.jpg">
-  <div class="home">
-    <h1>Home</h1>
-    <p>Welcome, {{username}}!</p>
-  </div>
+    <div class="home">
+      <h1>Home</h1>
+      <p>Welcome, {{username}}!</p>
+    </div>
   <NavBar/>
   
   </div>
@@ -42,6 +42,5 @@ export default {
     margin-left: 0px;
   
   }
-
-
+  
 </style>

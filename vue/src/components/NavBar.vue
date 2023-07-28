@@ -5,6 +5,7 @@
         <p><router-link class="linktext" :to="{ name: 'family'}">Family</router-link></p>
         <p><router-link class="linktext" :to="{ name: 'readingList' }">Books</router-link></p>
         <p><router-link class="linktext" :to="{ name: 'prizes' }">Prizes</router-link></p>
+        <p><router-link class="linktext" :to="{ name: 'settings' }">Settings</router-link></p>
     </div>
 </template>
 

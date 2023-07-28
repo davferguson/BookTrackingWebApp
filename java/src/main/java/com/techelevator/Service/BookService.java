@@ -28,6 +28,9 @@ public class BookService {
     public void removeBook(Book book, String username){
         bookDao.removeBook(book, userDao.findIdByUsername(username));
     }
+    public void removeAllBooks(String username){
+        bookDao.removeAllBooks(userDao.findIdByUsername(username));
+    }
 
 //    public Book createBook(String Isbn, String curUsername){
 //        String url = "https://openlibrary.org/isbn/" + Isbn + ".json";

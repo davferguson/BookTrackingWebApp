@@ -24,5 +24,8 @@ public class ReadingService {
     public void removeReadingLog(Book book, String username){
         readingDao.removeReadingLog(book, userDao.findIdByUsername(username));
     }
+    public void removeAllReadingLogs(String username){
+        readingDao.removeAllReadingLogs(userDao.findIdByUsername(username));
+    }
 
 }

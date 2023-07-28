@@ -24,6 +24,10 @@ public class UserService {
         return userDao.getBooksByStatus(userId, status);
 
     }
+    public void deleteUser(String username){
+        int userId = userDao.findIdByUsername(username);
+        userDao.deleteUser(userId);
+    }
 
     public List<Book> currentlyReading(int userId){
         return userDao.currentlyReading(userId);
@@ -44,5 +48,8 @@ public class UserService {
 
     public List<User> familyMembers(int userId){
         return userDao.familyMembers(userId);
+    }
+    public void removeFamilyMember(String username){
+        userDao.removeFamilyMember(userDao.findIdByUsername(username));
     }
 }

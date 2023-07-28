@@ -7,4 +7,5 @@ public interface ReadingDao {
 
     void logReading(Reading reading);
     void removeReadingLog(Book book, int userId);
+    void removeAllReadingLogs(int userId);
 }
