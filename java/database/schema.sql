@@ -1,6 +1,7 @@
 BEGIN TRANSACTION;
 
 DROP TABLE IF EXISTS prize;
+DROP TABLE IF EXISTS prize_family;
 DROP TABLE IF EXISTS family_user;
 DROP TABLE IF EXISTS family_account;
 DROP TABLE IF EXISTS reading_details;
@@ -11,14 +12,17 @@ DROP TABLE IF EXISTS public.users;
 
 CREATE TABLE IF NOT EXISTS prize (
 	prize_id SERIAL,
-	name varchar(500) NOT NULL UNIQUE,
+	name varchar(500) NOT NULL,
 	description varchar(500) NOT NULL,
-	milestone int NULL,
-	maxprizes int NULL,
-	startdate date NULL,
-	enddate date NULL,
 
 	CONSTRAINT PK_prizeid PRIMARY KEY (prize_id)
+);
+
+CREATE TABLE IF NOT EXISTS prize_family (
+	family_id INT NOT NULL,
+	prize_id INT NOT NULL,
+	CONSTRAINT FK_family_id FOREIGN KEY (family_id) REFERENCES family_account (family_id),
+	CONSTRAINT FK_prize_id FOREIGN KEY (prize_id) REFERENCES prize (prize_id)
 );
 
 CREATE TABLE IF NOT EXISTS book (
