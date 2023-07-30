@@ -4,26 +4,14 @@
     <NavBar/>
      <div class="profilewindow">
         <h3>Welcome to your Books!</h3>
-    
-        <div id="addbookform">
-        <form v-show="addReadingActivity" >
-            <input name="isbn" type="text" placeholder="Enter ISBN" v-model="addedBook.isbn"/>
-            <input name="title" type="text" placeholder="Enter title" v-model="addedBook.book_name"/>
-            <input name="author" type="text" placeholder="Enter author" v-model="addedBook.author"/>
-            <input name="pages" type="number" placeholder="Enter number of pages" v-model="addedBook.numberofpages"/>
-            <input name="format" type="text" placeholder="PAPER or DIGITAL?" v-model="addedBook.format"/>
-            <br />
-            <button class="addbook_btn" v-on:click.prevent="submitAddedBook()">Add Book</button>
-        </form>
-        </div>
-        <!-- <BookInfo/> -->
         <form id="filter_form">
             <input id="filter_input" name="filter" type="text" placeholder="Enter title" v-model="searchFilter"/>
             <button class="addbook_btn" v-on:click.prevent="filterBooks()">Filter books</button>
             <button class="addbook_btn" v-on:click.prevent="clearFilter()">Clear</button>
+            <button class="addbook_btn" v-on:click.prevent="addBook()">Add a Book!</button>
         </form>
         <BookList v-if="hasBooks" :books="filteredBooks" :isAddBook='false' :isRemoveBook='true'/>
-        <router-link class="addbook_btn" :to="{ name: 'addbook' }">Add a Book!</router-link>
+        <!-- <router-link class="addbook_btn" :to="{ name: 'addbook' }">Add a Book!</router-link> -->
     </div>
 
  
@@ -65,6 +53,9 @@ export default {
         }
 },
     methods: {
+        addBook() {
+            this.$router.push('/addbook')
+        },
         filterBooks() {
             let vm = this;
             this.filteredBooks = this.allBooks.filter(function (book) { return book.book_name.toUpperCase().includes(vm.searchFilter.toUpperCase()); });
