@@ -27,47 +27,23 @@ public class BookWormController {
     private ReadingService readingService;
     private UserService userService;
     private PrizeService prizeService;
+    private ApiService apiService;
 
-    BookWormController(ParentService parentService, BookService bookService, UserDao userDao, ReadingService readingService, UserService userService, PrizeService prizeService){
+    BookWormController(ParentService parentService, BookService bookService, UserDao userDao, ReadingService readingService, UserService userService, PrizeService prizeService, ApiService apiService){
         this.parentService = parentService;
         this.bookService = bookService;
         this.userDao = userDao;
         this.readingService = readingService;
         this.userService = userService;
         this.prizeService = prizeService;
+        this.apiService = apiService;
     }
 
-//    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("isAuthenticated()")
     @ResponseStatus(HttpStatus.ACCEPTED)
     @RequestMapping(value = "/book_search", method = RequestMethod.POST)
-    public SearchResult bookTitleSearch(@RequestBody String[] keywords) {
-        String url = "https://openlibrary.org/search.json?q=";
-        for(int i = 0; i < keywords.length; i++){
-            url += keywords[i];
-            if(i != keywords.length-1){
-                url += "+";
-            }
-        }
-        RestTemplate restTemplate = new RestTemplate();
-        BookSearchAPI bookSearchAPI = restTemplate.getForObject(url, BookSearchAPI.class);
-
-        SearchResult searchResult = new SearchResult();
-        searchResult.setNumFound(bookSearchAPI.getNumFound());
-        List<Book> books = new ArrayList<>();
-        for(int i = 0; i < 10 && i < bookSearchAPI.getNumFound(); i++){
-            Book book = new Book();
-            if(bookSearchAPI.getDocs().get(i).getIsbn() != null){
-                book.setIsbn(bookSearchAPI.getDocs().get(i).getIsbn()[0]);
-            }
-            book.setBook_name(bookSearchAPI.getDocs().get(i).getTitle());
-            if(bookSearchAPI.getDocs().get(i).getAuthor() != null){
-                book.setAuthor(bookSearchAPI.getDocs().get(i).getAuthor()[0]);
-            }
-            books.add(book);
-        }
-        searchResult.setBooks(books);
-
-        return searchResult;
+    public SearchResult apiBookSearch(@RequestBody String[] keywords) {
+        return apiService.apiBookSearch(keywords);
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -89,13 +65,6 @@ public class BookWormController {
     public String getFamilyForId(Principal curUser) {
         return parentService.getFamilyForUser(curUser.getName());
     }
-
-//    @PreAuthorize("hasRole('ROLE_ADMIN')")
-//    @ResponseStatus(HttpStatus.ACCEPTED)
-//    @RequestMapping(value = "/add_family_member", method = RequestMethod.POST)
-//    public void addFamilyMember(@RequestBody String username, Principal curUser){
-//        parentService.addFamilyMember(username, curUser.getName());
-//    }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @ResponseStatus(HttpStatus.CREATED)
