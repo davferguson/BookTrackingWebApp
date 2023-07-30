@@ -46,6 +46,9 @@ export default new Vuex.Store({
     user: currentUser || {}
   },
   mutations: {
+    SET_USERNAME(state, payload){
+      state.user.username = payload;
+    },
     SET_CUR_BOOK_MINUTES_READ(state, payload){
       state.curBookMinutesRead = payload;
     },

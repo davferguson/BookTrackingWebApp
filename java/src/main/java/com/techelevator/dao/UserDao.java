@@ -1,6 +1,7 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Book;
+import com.techelevator.model.ChangeUsername;
 import com.techelevator.model.User.User;
 
 import java.security.Principal;
@@ -18,6 +19,7 @@ public interface UserDao {
 
     boolean create(String username, String password, String role);
     void deleteUser(int userId);
+    void changeUsername(ChangeUsername changeUsername);
 
     void createFamilyAccount(String familyName, int userId);
 

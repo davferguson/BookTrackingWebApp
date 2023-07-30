@@ -2,6 +2,7 @@ package com.techelevator.Service;
 
 import com.techelevator.dao.UserDao;
 import com.techelevator.model.Book;
+import com.techelevator.model.ChangeUsername;
 import com.techelevator.model.User.User;
 import org.springframework.stereotype.Component;
 
@@ -27,6 +28,9 @@ public class UserService {
     public void deleteUser(String username){
         int userId = userDao.findIdByUsername(username);
         userDao.deleteUser(userId);
+    }
+    public void changeUsername(ChangeUsername changeUsername){
+        userDao.changeUsername(changeUsername);
     }
 
     public List<Book> currentlyReading(int userId){

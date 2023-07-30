@@ -9,6 +9,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -100,6 +101,13 @@ public class BookWormController {
         userService.removeFamilyMember(curUser.getName());
         userService.deleteUser(curUser.getName());
         System.out.println("DELETED.");
+    }
+    @PreAuthorize("isAuthenticated()")
+    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(value = "/change_username", method = RequestMethod.POST)
+    public void changeUsername(@RequestBody ChangeUsername changeUsername){
+//        newUsername = newUsername.substring(0, newUsername.length()-1);
+        userService.changeUsername(changeUsername);
     }
 
     @PreAuthorize("isAuthenticated()")

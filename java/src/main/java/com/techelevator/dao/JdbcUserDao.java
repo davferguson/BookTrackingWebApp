@@ -5,8 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import com.techelevator.model.Book;
-import com.techelevator.model.UserNotFoundException;
+import com.techelevator.model.*;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -90,6 +89,25 @@ public class JdbcUserDao implements UserDao {
     public void deleteUser(int userId) {
         String sql = "DELETE FROM users WHERE user_id = ?";
         jdbcTemplate.update(sql, userId);
+    }
+
+    @Override
+    public void changeUsername(ChangeUsername changeUsername) {
+        try {
+            User user = findByUsername(changeUsername.getNewUsername());
+            throw new UserAlreadyExistsException();
+        } catch (UsernameNotFoundException e) {
+            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+            User user = findByUsername(changeUsername.getCurUsername());
+            System.out.println(encoder.matches(changeUsername.getPassword(), user.getPassword()));
+            if(encoder.matches(changeUsername.getPassword(), user.getPassword())){
+                String sql = "UPDATE users SET username = ? WHERE username = ?";
+                jdbcTemplate.update(sql, changeUsername.getNewUsername(), changeUsername.getCurUsername());
+            } else {
+                throw new IncorrectPasswordException();
+            }
+
+        }
     }
 
     @Override
