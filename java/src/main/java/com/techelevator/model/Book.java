@@ -10,6 +10,15 @@ public class Book {
     private String rating = "";
     private String genre = "";
     private String format;
+    private String imageLink;
+
+    public String getImageLink() {
+        return imageLink;
+    }
+
+    public void setImageLink(String imageLink) {
+        this.imageLink = imageLink;
+    }
 
     public int getBook_id() {
         return book_id;

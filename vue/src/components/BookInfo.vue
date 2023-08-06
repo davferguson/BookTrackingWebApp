@@ -1,8 +1,10 @@
 <template>
     <div class="container">
         <div class="img">
-            <img @load="onImageLoad" v-if="imageAvailable" id="cover_image" v-bind:src="'http://covers.openlibrary.org/b/isbn/' + book.isbn + '-M.jpg'"/>
-            <img v-if="!imageAvailable" src="No-Image-Placeholder.png"/>
+            <!-- <img @load="onImageLoad" v-if="imageAvailable" id="cover_image" v-bind:src="'http://covers.openlibrary.org/b/isbn/' + book.isbn + '-M.jpg'"/> -->
+            <img :src="bookCover"/>
+            <!-- <img id="coverImg"/>
+            <img v-if="!imageAvailable" src="No-Image-Placeholder.png"/> -->
         </div>
         <div class="info">
             {{ book.book_name }}<br>
@@ -30,6 +32,7 @@ export default {
             user: this.$store.state.user,
             minutes_read: 0,
             imageAvailable: true,
+            bookCover: this.book.imageLink,
             readingActivity: {
               username: this.$store.state.user.username, 
               minutes_read: "",
@@ -41,7 +44,9 @@ export default {
     methods: {  
         onImageLoad() {
             const curImg = new Image();
-            curImg.src = 'http://covers.openlibrary.org/b/isbn/' + this.book.isbn + '-M.jpg';
+            // curImg.src = 'http://covers.openlibrary.org/b/isbn/' + this.book.isbn + '-M.jpg';
+            console.log(this.book.imageLink);
+            curImg.src = this.book.imageLink;
             if(curImg.height == 1){
                 this.imageAvailable = false;
             }
@@ -67,6 +72,8 @@ export default {
         BookService.minutesRead(this.readingActivity.username, this.readingActivity.isbn).then(response => {
                 this.minutes_read = response.data;
             });
+        console.log(this.bookCover);
+        // document.getElementById("coverImg").src = this.book.imageLink;
     },
     computed: {
     }

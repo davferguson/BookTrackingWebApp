@@ -47,6 +47,13 @@ public class BookWormController {
         return apiService.apiBookSearch(keywords);
     }
 
+//    @PreAuthorize("isAuthenticated()")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    @RequestMapping(value = "/google_book_search", method = RequestMethod.POST)
+    public SearchResult googleAPIBookSearch(@RequestBody String[] keywords) {
+        return apiService.googleAPIBookSearch(keywords);
+    }
+
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(value = "/register_child", method = RequestMethod.POST)

@@ -32,6 +32,6 @@ export default {
         return axios.post('/remove_book', removedBook);
     },
     searchApiByTitle(keywords) {
-        return axios.post('/book_search', keywords);
+        return axios.post('/google_book_search', keywords);
     }
 }
