@@ -72,8 +72,6 @@ export default {
         BookService.minutesRead(this.readingActivity.username, this.readingActivity.isbn).then(response => {
                 this.minutes_read = response.data;
             });
-        console.log(this.bookCover);
-        // document.getElementById("coverImg").src = this.book.imageLink;
     },
     computed: {
     }

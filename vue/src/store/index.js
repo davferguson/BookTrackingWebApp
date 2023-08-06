@@ -46,6 +46,9 @@ export default new Vuex.Store({
     user: currentUser || {}
   },
   mutations: {
+    SET_ALL_BOOKS(state, payload){
+      state.allBooks = payload;
+    },
     SET_USERNAME(state, payload){
       state.user.username = payload;
     },

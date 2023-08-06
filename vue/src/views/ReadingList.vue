@@ -79,7 +79,7 @@ export default {
     },
     created() {
             BookService.list(this.user).then(response => {
-                this.$store.state.bookCompleted = response.data;
+                this.$store.commit('SET_ALL_BOOKS', response.data);
                 if(response.data != ""){
                     this.hasBooks = true;
                 }
