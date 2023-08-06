@@ -31,6 +31,7 @@ CREATE TABLE IF NOT EXISTS book (
 	isbn varchar(50) NOT NULL,
 	description varchar(10000) NULL,
 	author varchar(50) NOT NULL,
+	image_link varchar(500) DEFAULT NULL,
 	numberofpages int DEFAULT 0,
 	rating varchar(2) NULL,
 	genre varchar(50) NULL,

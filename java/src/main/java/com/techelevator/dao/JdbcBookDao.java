@@ -20,23 +20,6 @@ public class JdbcBookDao implements BookDao{
 
     @Override
     public void createBook(Book book, int userId){
-//        Original code - 8/16/22
-//        String sql = "INSERT INTO book (book_name, isbn, description, author, numberofpages, rating, genre) values (?, ?, ?, ?, ?, ?,?) RETURNING book_id";
-//
-//        Integer bookId;
-//        try {
-//            bookId = jdbcTemplate.queryForObject(sql, Integer.class, book.getBook_name(), book.getIsbn(), book.getDescription(), book.getAuthor(), book.getNumberofpages(), book.getRating(), book.getGenre());
-//        } catch (DataAccessException e) {
-//            return;
-//        }
-//
-//        sql = "INSERT INTO book_user (book_id, user_id) values (?, ?)";
-//        try {
-//            jdbcTemplate.update(sql, bookId, userId);
-//        } catch (DataAccessException e) {
-//            return;
-//        }
-
         String bookCountSQL = "Select book_id from book where isbn = ?";
         String recordCountSQL = ("Select count(*) from book_user where book_id = ? and user_id = ?");
         Integer curBookId = 0;
@@ -63,10 +46,10 @@ public class JdbcBookDao implements BookDao{
         if(curBookId == 0){
 //            System.out.println("loop1  BookId : " + curBookId + " -- Book_User Record count : " + bookUserExists + " -- UserId : " + userId);
             Integer bookId;
-            sql = "INSERT INTO book (book_name, isbn, description, author, numberofpages, rating, genre) values (?, ?, ?, ?, ?, ?,?) RETURNING book_id";
+            sql = "INSERT INTO book (book_name, isbn, description, author, numberofpages, rating, genre, image_link) values (?, ?, ?, ?, ?, ?, ?, ?) RETURNING book_id";
 
             try {
-                bookId = jdbcTemplate.queryForObject(sql, Integer.class, book.getBook_name(), book.getIsbn(), book.getDescription(), book.getAuthor(), book.getNumberofpages(), book.getRating(), book.getGenre());
+                bookId = jdbcTemplate.queryForObject(sql, Integer.class, book.getBook_name(), book.getIsbn(), book.getDescription(), book.getAuthor(), book.getNumberofpages(), book.getRating(), book.getGenre(), book.getImageLink());
             } catch (DataAccessException e) {
                 return;
             }
@@ -129,6 +112,7 @@ public class JdbcBookDao implements BookDao{
         book.setRating(row.getString("rating"));
         book.setFormat(row.getString("format"));
         book.setBook_name(row.getString("book_name"));
+        book.setImageLink(row.getString("image_link"));
         return book;
     }
 }
