@@ -7,11 +7,8 @@
             <form id="filter_form">
                 <input id="filter_input" name="search" type="text" placeholder="Enter title, author, or isbn" v-model="customSearch"/>
                 <button class="addbook_btn" v-on:click.prevent="searchTitle()">Search</button>
-                <!-- <button class="addbook_btn" v-on:click.prevent="previousPage()">Back</button> -->
                 <router-link :to="{ name: 'readingList' }"><button class="addbook_btn">Back</button></router-link>
             </form>
-            <!-- <p v-if="searchResult.books!=''">ISBN: {{ searchResult.books[0].isbn }}</p>
-            <img v-if="searchResult.books!=''" v-bind:src="'http://covers.openlibrary.org/b/isbn/' + searchResult.books[0].isbn + '-M.jpg'" /> -->
             <BookList v-if="searchResult.books!=null" :books="searchResult.books" :isAddBook='true' :isRemoveBook='false'/>
         </div>
     
@@ -48,9 +45,6 @@
         this.searchResult = response.data;
       })
       },
-      previousPage() {
-        this.$router.go(-1);
-      }
     },
     created() {
       
