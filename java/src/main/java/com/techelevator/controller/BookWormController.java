@@ -47,7 +47,7 @@ public class BookWormController {
         return apiService.apiBookSearch(keywords);
     }
 
-//    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("isAuthenticated()")
     @ResponseStatus(HttpStatus.ACCEPTED)
     @RequestMapping(value = "/google_book_search", method = RequestMethod.POST)
     public SearchResult googleAPIBookSearch(@RequestBody String[] keywords) {
@@ -87,9 +87,6 @@ public class BookWormController {
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(value = "/add_book", method = RequestMethod.POST)
     public void addBook(@RequestBody Book newBook, Principal curUser){
-//        String newString = Isbn.replaceAll("=", "");
-//        String isbn = newBook.getIsbn();
-//        bookService.createBook(isbn, curUser.getName());
         bookService.createBook(newBook, curUser.getName());
     }
     @PreAuthorize("isAuthenticated()")

@@ -1,7 +1,8 @@
 <template>
   <div class="card" v-bind:class="{ selected: isSelected }">
-    <img @load="onImageLoad" v-on:click="selectBook()" v-if="book.isbn&&imageAvailable" v-bind:src="'http://covers.openlibrary.org/b/isbn/' + book.isbn + '-M.jpg'" />
-    <div v-on:click="selectBook()" id="nocover" v-else >{{ book.book_name }}<p>{{ book.author }}</p></div>
+    <img :src="book.imageLink" v-on:click="selectBook()"/>
+    <!-- <img @load="onImageLoad" v-on:click="selectBook()" v-if="book.isbn&&imageAvailable" v-bind:src="'http://covers.openlibrary.org/b/isbn/' + book.isbn + '-M.jpg'" />
+    <div v-on:click="selectBook()" id="nocover" v-else >{{ book.book_name }}<p>{{ book.author }}</p></div> -->
     <div v-on:click="selectBook()" v-bind:class="{ 'color-overlay': isSelected }"></div>
     
     <form v-show="isSelected" class="centered">

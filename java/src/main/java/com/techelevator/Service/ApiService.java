@@ -76,7 +76,6 @@ public class ApiService {
             books.add(book);
         }
         searchResult.setBooks(books);
-        System.out.println(googleBookSearchResult);
         return searchResult;
     }
 

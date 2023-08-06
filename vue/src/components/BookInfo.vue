@@ -2,7 +2,7 @@
     <div class="container">
         <div class="img">
             <!-- <img @load="onImageLoad" v-if="imageAvailable" id="cover_image" v-bind:src="'http://covers.openlibrary.org/b/isbn/' + book.isbn + '-M.jpg'"/> -->
-            <img :src="bookCover"/>
+            <img :src="book.imageLink"/>
             <!-- <img id="coverImg"/>
             <img v-if="!imageAvailable" src="No-Image-Placeholder.png"/> -->
         </div>
@@ -32,7 +32,6 @@ export default {
             user: this.$store.state.user,
             minutes_read: 0,
             imageAvailable: true,
-            bookCover: this.book.imageLink,
             readingActivity: {
               username: this.$store.state.user.username, 
               minutes_read: "",

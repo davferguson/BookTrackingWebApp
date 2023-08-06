@@ -253,6 +253,7 @@ public class JdbcUserDao implements UserDao {
         book.setRating(row.getString("rating"));
         book.setFormat(row.getString("format"));
         book.setBook_name(row.getString("book_name"));
+        book.setImageLink(row.getString("image_link"));
         return book;
     }
 }
