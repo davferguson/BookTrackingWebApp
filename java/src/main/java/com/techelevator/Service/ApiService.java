@@ -12,7 +12,6 @@ import java.util.List;
 
 @Component
 public class ApiService {
-    private final String GOOGLE_API_KEY = "AIzaSyBpGckJSk3Cvek9yVbNEqmM5RKd6hJ-gjo";
     public SearchResult apiBookSearch(String[] keywords){
         String urlStart = "https://openlibrary.org/search.json?q=";
         String url = generateURLFromSearch(urlStart, keywords);
