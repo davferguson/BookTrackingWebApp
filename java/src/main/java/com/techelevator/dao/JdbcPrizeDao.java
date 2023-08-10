@@ -33,7 +33,7 @@ public class JdbcPrizeDao implements PrizeDao{
     }
 
     @Override
-    public void createPrize(Prize prize) {
+    public int createPrize(Prize prize) {
         prize.setStart_date(prize.getStart_date().replace('T', ' '));
         prize.setEnd_date(prize.getEnd_date().replace('T', ' '));
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
@@ -42,7 +42,10 @@ public class JdbcPrizeDao implements PrizeDao{
         String sql = "INSERT INTO prize (name, description, start_date, end_date) VALUES (?, ?, ?, ?) RETURNING prize_id";
         Integer prize_id;
         prize_id = jdbcTemplate.queryForObject(sql, Integer.class, prize.getName(), prize.getDescription(), startDate, endDate);
-        System.out.println(prize_id);
+        if(prize_id != null){
+            return prize_id;
+        }
+        return 0;
     }
 
 

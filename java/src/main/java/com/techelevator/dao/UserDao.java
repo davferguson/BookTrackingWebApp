@@ -24,6 +24,8 @@ public interface UserDao {
     void createFamilyAccount(String familyName, int userId);
 
     String getFamilyNameForUsername(String username);
+    int getFamilyIdFromUsername(String username);
+    void addToPrizeFamily(int familyId, int prizeId);
 
     void addFamilyMember(int curId, int addedId);
     void removeFamilyMember(int userId);

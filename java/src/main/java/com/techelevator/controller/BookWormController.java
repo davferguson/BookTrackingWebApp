@@ -203,8 +203,14 @@ public class BookWormController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(value = "/create_prize", method = RequestMethod.POST)
-    public void createPrize(@RequestBody Prize prize, @RequestParam Integer family_id) {
-        System.out.println(family_id);
-        prizeService.createPrize(prize);
+    public void createPrize(@RequestBody Prize prize, @RequestParam int family_id) {
+        int prizeId = prizeService.createPrize(prize);
+        userService.addToPrizeFamily(family_id, prizeId);
+    }
+    @PreAuthorize("isAuthenticated()")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    @RequestMapping(value = "/find_family_id", method = RequestMethod.GET)
+    public int getFamilyIdFromUsername(@RequestParam String username) {
+        return userService.getFamilyIdFromUsername(username);
     }
 }

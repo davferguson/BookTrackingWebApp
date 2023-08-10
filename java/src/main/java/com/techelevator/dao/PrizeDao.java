@@ -7,5 +7,5 @@ import java.util.List;
 public interface PrizeDao {
 
     List<Prize> findAll();
-    void createPrize(Prize prize);
+    int createPrize(Prize prize);
 }

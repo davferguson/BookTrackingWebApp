@@ -144,6 +144,30 @@ public class JdbcUserDao implements UserDao {
         }
 
     }
+
+    @Override
+    public int getFamilyIdFromUsername(String username) {
+        String sql = "SELECT family_id FROM family_user WHERE user_id = ?";
+        int userId = findIdByUsername(username);
+        int familyId;
+        try {
+            familyId = jdbcTemplate.queryForObject(sql, int.class, userId);
+        } catch (EmptyResultDataAccessException ex) {
+            throw new UserHasNoFamilyException();
+        }
+        return familyId;
+    }
+
+    @Override
+    public void addToPrizeFamily(int familyId, int prizeId) {
+        String sql = "INSERT INTO prize_family (family_id, prize_id) values (?, ?)";
+        try {
+            jdbcTemplate.update(sql, familyId, prizeId);
+        } catch (DataAccessException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
     @Override
     public void addFamilyMember(int curId, int addedId) {
         String sql = "SELECT family_id FROM family_user WHERE user_id = ?";

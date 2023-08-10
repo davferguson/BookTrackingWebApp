@@ -29,9 +29,11 @@
                     <input type="datetime-local" id="pend" v-model="prize.end_date" required>
                     <br>
                     <input type="submit" id="prize-submit" value="Submit Prize">
+                    <div id="no-family-error" v-if="!isPartOfFamily">
+                        Must be part of a family to create a prize!
+                    </div>
                 </form>
              </div>
-             <p v-for="prize in this.$store.state.prizes" v-bind:key="prize.description">Prizes will be displayed here!</p>
              <img id="trophy" src="trophy1.png">
              <img id="trophy" src="trophy1.png">
              <img id="trophy" src="trophy1.png">
@@ -41,6 +43,7 @@
 
 <script>   
 import PrizeService from '../services/PrizeService.js';
+import FamilyService from '../services/FamilyService.js';
 import NavBar from '@/components/NavBar.vue';
 
     export default {  
@@ -52,6 +55,8 @@ import NavBar from '@/components/NavBar.vue';
             username: this.$store.state.user.username,
             isAdmin: false,
             isCreatePrize: false,
+            isPartOfFamily: true,
+            familyId: 0,
             prize: {
                 name: "",
                 description: "",
@@ -69,10 +74,14 @@ import NavBar from '@/components/NavBar.vue';
                 }
             },
             submitPrize() {
-                PrizeService.createPrize(this.prize, 10).then((response) => {
-                    console.log(response.status);
+                if(this.isPartOfFamily){
+                    PrizeService.createPrize(this.prize, this.familyId).then((response) => {
+                    if (response.status === 201) {
+                        this.$router.push('/actioncompleted')
+                    }
                 });
-                console.log(this.prize);
+                }
+                
             },
             prizeCharacterCounter() {
                 const prizeTextAreaElement = document.querySelector("#pdescription");
@@ -88,12 +97,25 @@ import NavBar from '@/components/NavBar.vue';
             if(this.$store.state.user.authorities[0].name == 'ROLE_ADMIN'){
                 this.isAdmin = true;
             }
+            FamilyService.getFamilyIdFromUsername(this.username).then((response) => {
+                this.familyId = response.data;
+            }).catch((error) => {
+                if(error.response.status === 404){
+                    this.isPartOfFamily = false;
+                    console.log("not in family!");
+                    return;
+                }
+            });
         }
     };
 
 </script>
 
 <style scoped>
+#no-family-error {
+    text-align: center;
+    color: red;
+}
 #prize-submit {
   background-color: #22162B;
   color: #f8c630;

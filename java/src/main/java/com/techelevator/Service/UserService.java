@@ -56,4 +56,10 @@ public class UserService {
     public void removeFamilyMember(String username){
         userDao.removeFamilyMember(userDao.findIdByUsername(username));
     }
+    public int getFamilyIdFromUsername(String username){
+        return userDao.getFamilyIdFromUsername(username);
+    }
+    public void addToPrizeFamily(int familyId, int prizeId){
+        userDao.addToPrizeFamily(familyId, prizeId);
+    }
 }

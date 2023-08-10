@@ -29,5 +29,8 @@ export default {
     
     getReadingActivityChild(user) {
         return axios.get(`/check_reading_activity_child`, user)
+    },
+    getFamilyIdFromUsername(username) {
+        return axios.get('/find_family_id', { params: {username}})
     }
 }
