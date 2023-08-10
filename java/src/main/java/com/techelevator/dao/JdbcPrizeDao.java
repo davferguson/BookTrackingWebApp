@@ -5,6 +5,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,16 +32,27 @@ public class JdbcPrizeDao implements PrizeDao{
         return prizes;
     }
 
+    @Override
+    public void createPrize(Prize prize) {
+        prize.setStart_date(prize.getStart_date().replace('T', ' '));
+        prize.setEnd_date(prize.getEnd_date().replace('T', ' '));
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        LocalDateTime startDate = LocalDateTime.parse(prize.getStart_date(), formatter);
+        LocalDateTime endDate = LocalDateTime.parse(prize.getEnd_date(), formatter);
+        String sql = "INSERT INTO prize (name, description, start_date, end_date) VALUES (?, ?, ?, ?) RETURNING prize_id";
+        Integer prize_id;
+        prize_id = jdbcTemplate.queryForObject(sql, Integer.class, prize.getName(), prize.getDescription(), startDate, endDate);
+        System.out.println(prize_id);
+    }
+
 
     private Prize mapRowToPrize(SqlRowSet row){
         Prize prize = new Prize();
         prize.setPrize_id(row.getInt("prize_id"));
         prize.setName(row.getString("name"));
         prize.setDescription(row.getString("description"));
-        prize.setMileStone(row.getInt("mileStone"));
-        prize.setMaxPrizes(row.getInt("maxPrizes"));
-        prize.setStartDate(row.getDate("startDate"));
-        prize.setEndDate(row.getDate("endDate"));
+        prize.setStart_date(row.getString("start_date"));
+        prize.setEnd_date(row.getString("end_date"));
         return prize;
     }
 

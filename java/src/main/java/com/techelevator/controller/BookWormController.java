@@ -199,4 +199,12 @@ public class BookWormController {
     public List<Prize> prizeList() {
         return prizeService.findAll();
     }
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @ResponseStatus(HttpStatus.CREATED)
+    @RequestMapping(value = "/create_prize", method = RequestMethod.POST)
+    public void createPrize(@RequestBody Prize prize, @RequestParam Integer family_id) {
+        System.out.println(family_id);
+        prizeService.createPrize(prize);
+    }
 }

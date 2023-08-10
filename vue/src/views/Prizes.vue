@@ -69,6 +69,9 @@ import NavBar from '@/components/NavBar.vue';
                 }
             },
             submitPrize() {
+                PrizeService.createPrize(this.prize, 10).then((response) => {
+                    console.log(response.status);
+                });
                 console.log(this.prize);
             },
             prizeCharacterCounter() {

@@ -9,21 +9,8 @@ public class Prize {
     private int prize_id;
     private String name;
     private String description;
-    private int mileStone;
-    private int maxPrizes;
-    private Date startDate;
-    private Date endDate;
-
-    public Prize( int prize_id, String name, String description, int mileStone, int maxPrizes, Date startDate, Date endDate) {
-        this.name = name;
-        this.description = description;
-        this.mileStone  = mileStone;
-        this.maxPrizes = maxPrizes;
-        this.startDate = startDate;
-        this.endDate = endDate;
-
-    }
-
+    private String start_date;
+    private String end_date;
     public Prize() {
 
     }
@@ -52,35 +39,19 @@ public class Prize {
         this.description = description;
     }
 
-    public int getMileStone() {
-        return mileStone;
+    public String getStart_date() {
+        return start_date;
     }
 
-    public void setMileStone(int mileStone) {
-        this.mileStone = mileStone;
+    public void setStart_date(String start_date) {
+        this.start_date = start_date;
     }
 
-    public int getMaxPrizes() {
-        return maxPrizes;
+    public String getEnd_date() {
+        return end_date;
     }
 
-    public void setMaxPrizes(int maxPrizes) {
-        this.maxPrizes = maxPrizes;
-    }
-
-    public Date getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
+    public void setEnd_date(String end_date) {
+        this.end_date = end_date;
     }
 }
