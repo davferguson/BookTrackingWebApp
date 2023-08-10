@@ -3,15 +3,38 @@
     <img class="homebackground" src="living-room.jpg">
         <NavBar/>
          <div class="prizewindow">
-             <h1 class="pageheading">Prizes coming soon!</h1>
-        </div>
-         <div class="prizebody">
+             <h1>Prizes!</h1>
+             <div v-if="isAdmin" id="createPrize">
+                <button class="create-prize-btn" v-on:click.prevent="toggleCreatePrize()">Create a Prize</button>
+            </div>
+             
+             <div v-if="isAdmin" id="createPrize">
+                <!-- <h3>Create a prize: </h3> -->
+                <br>
+                <form v-if="isCreatePrize" @submit.prevent="submitPrize">
+                    <input type="text" placeholder="Prize name" id="pname" name="pname" required>
+                    <br>
+                    <textarea v-on:keyup="prizeCharacterCounter()" id="pdescription" placeholder="Write prize description..." name="pdescription" rows="4" cols="50" maxlength="499" required></textarea>
+                    <div id="character-counter">
+                        <span id="typed-characters">0</span>
+                        <span>/</span>
+                        <span id="maximum-characters">499</span>
+                    </div>
+                    <div>
+                        <label for="pstart">Start Date: </label>
+                        <input type="datetime-local" id="pstart" required>
+                    </div>
+                    <br>
+                    <label for="pend">End Date: </label>
+                    <input type="datetime-local" id="pend" required>
+                    <br>
+                    <input type="submit" id="prize-submit" value="Submit Prize">
+                </form>
+             </div>
              <p v-for="prize in this.$store.state.prizes" v-bind:key="prize.description">Prizes will be displayed here!</p>
-            <!-- <p> {{ this.prize }} </p> -->
              <img id="trophy" src="trophy1.png">
              <img id="trophy" src="trophy1.png">
              <img id="trophy" src="trophy1.png">
-
         </div>
 </div>
 </template>   
@@ -27,50 +50,121 @@ import NavBar from '@/components/NavBar.vue';
         data() {
             return {
             username: this.$store.state.user.username,
+            isAdmin: false,
+            isCreatePrize: false,
              }
         },
-
+        methods: {
+            toggleCreatePrize() {
+                if(this.isCreatePrize){
+                    this.isCreatePrize = false;
+                } else {
+                    this.isCreatePrize = true;
+                }
+            },
+            submitPrize() {
+                console.log("submitting");
+            },
+            prizeCharacterCounter() {
+                const prizeTextAreaElement = document.querySelector("#pdescription");
+                const typedCharacters = prizeTextAreaElement.value.length;
+                const typedCharactersElement = document.querySelector("#typed-characters");
+                typedCharactersElement.textContent = typedCharacters;
+            }
+        },
         created() {
             PrizeService.list().then( (response) => {
                this.$store.state.prizes = response.data; 
-            })
+            });
+            if(this.$store.state.user.authorities[0].name == 'ROLE_ADMIN'){
+                this.isAdmin = true;
+            }
         }
     };
 
 </script>
 
 <style scoped>
-.prizebody {
-    position: absolute;
-    height: 30rem;
-    width: 50%;
-    top: 9rem;
-    left: 28%;
-    background-color: #22162b;
-    margin: 0 auto;
-    color: white;
-    font-family: "Mouse Memoirs", sans-serif;
-    font-size: 1.8em;
-    text-align: center;
+#prize-submit {
+  background-color: #22162B;
+  color: #f8c630;
+  font-family: "Mouse Memoirs", sans-serif;
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  margin-left: 25%;
+  width: 50%;
 }
-
+#prize-submit:hover {
+    background-color: #4a305e;
+}
+.create-prize-btn {
+  background-color: #22162B;
+  color: #f8c630;
+  font-family: "Mouse Memoirs", sans-serif;
+  font-size: 1.8rem;
+}
+.create-prize-btn:hover {
+  background-color: #4a305e;
+}
+label {
+    color: #f8c630;
+    font-family: "Mouse Memoirs", sans-serif;
+    font-size: 1.2rem;
+}
+form {
+    background-color: #503666b3;
+    width: 95%;
+    max-width: 30rem;
+    display: inline-block;
+    margin-bottom: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+input {
+    width: 90%; 
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+label {
+    text-align: right;
+    margin-left: 1rem;
+}
+#character-counter {
+    text-align: right;
+    color: #f8c630;
+    margin-right: 5%;
+}
+#pname {
+    border-width: 1px;
+}
+#pdescription {
+    resize: none;
+    width: 90%;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+#createPrize {
+    display:flex;
+    justify-content: center;
+}
 .prizewindow {
-  text-align: center;
   position: absolute;
   top: 50px;
   left: 18%;
-  background: rgba(114, 78, 145, 0.7);
+  background: #724e91b3;
   height: 40rem;
   width: 70vw;
 }
-
-.pageheading {
-    font-family: "Mouse Memoirs", sans-serif;
-    font-size: 4em;
-    color: #F8C630;
-    margin: 0;
+h1 {
+  font-size: 40px;
+  color: #f8c630;
+  background-color: #3a2649;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  margin: 0;
+  font-family: "Mouse Memoirs", sans-serif;
+  text-align: center;
 }
-
 #trophy {
     height: 15%;
 }
