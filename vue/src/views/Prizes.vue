@@ -12,9 +12,9 @@
                 <!-- <h3>Create a prize: </h3> -->
                 <br>
                 <form v-if="isCreatePrize" @submit.prevent="submitPrize">
-                    <input type="text" placeholder="Prize name" id="pname" name="pname" required>
+                    <input type="text" placeholder="Prize name" id="pname" name="pname" v-model="prize.name" required>
                     <br>
-                    <textarea v-on:keyup="prizeCharacterCounter()" id="pdescription" placeholder="Write prize description..." name="pdescription" rows="4" cols="50" maxlength="499" required></textarea>
+                    <textarea v-on:keyup="prizeCharacterCounter()" id="pdescription" placeholder="Write prize description..." name="pdescription" rows="4" cols="50" maxlength="499" v-model="prize.description" required></textarea>
                     <div id="character-counter">
                         <span id="typed-characters">0</span>
                         <span>/</span>
@@ -22,11 +22,11 @@
                     </div>
                     <div>
                         <label for="pstart">Start Date: </label>
-                        <input type="datetime-local" id="pstart" required>
+                        <input type="datetime-local" id="pstart" v-model="prize.start_date" required>
                     </div>
                     <br>
                     <label for="pend">End Date: </label>
-                    <input type="datetime-local" id="pend" required>
+                    <input type="datetime-local" id="pend" v-model="prize.end_date" required>
                     <br>
                     <input type="submit" id="prize-submit" value="Submit Prize">
                 </form>
@@ -52,7 +52,13 @@ import NavBar from '@/components/NavBar.vue';
             username: this.$store.state.user.username,
             isAdmin: false,
             isCreatePrize: false,
-             }
+            prize: {
+                name: "",
+                description: "",
+                start_date: "",
+                end_date: ""
+            }
+            }
         },
         methods: {
             toggleCreatePrize() {
@@ -63,7 +69,7 @@ import NavBar from '@/components/NavBar.vue';
                 }
             },
             submitPrize() {
-                console.log("submitting");
+                console.log(this.prize);
             },
             prizeCharacterCounter() {
                 const prizeTextAreaElement = document.querySelector("#pdescription");
