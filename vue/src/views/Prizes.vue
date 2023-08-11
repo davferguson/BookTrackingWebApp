@@ -34,6 +34,8 @@
                     </div>
                 </form>
              </div>
+            <h2>Current Prizes</h2>
+            <PrizeList :prizes="this.$store.state.prizes"/>
              <img id="trophy" src="trophy1.png">
              <img id="trophy" src="trophy1.png">
              <img id="trophy" src="trophy1.png">
@@ -45,10 +47,12 @@
 import PrizeService from '../services/PrizeService.js';
 import FamilyService from '../services/FamilyService.js';
 import NavBar from '@/components/NavBar.vue';
+import PrizeList from '@/components/PrizeList.vue';
 
     export default {  
         components: {
-            NavBar
+            NavBar,
+            PrizeList
          }, 
         data() {
             return {
@@ -188,6 +192,16 @@ label {
 }
 h1 {
   font-size: 40px;
+  color: #f8c630;
+  background-color: #3a2649;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  margin: 0;
+  font-family: "Mouse Memoirs", sans-serif;
+  text-align: center;
+}
+h2 {
+  font-size: 30px;
   color: #f8c630;
   background-color: #3a2649;
   padding-top: 7px;
