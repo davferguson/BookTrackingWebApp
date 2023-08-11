@@ -42,7 +42,6 @@ public class JdbcPrizeDao implements PrizeDao{
             Prize prize= mapRowToPrize(results);
             prizes.add(prize);
         }
-        System.out.println(prizes);
         return prizes;
     }
 

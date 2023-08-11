@@ -23,7 +23,6 @@ export default {
     },
     submitReading(readingActivity) {
         return axios.post('/log_reading', readingActivity);
-
     },
     submitBook(addedBook) {
         return axios.post(`/add_book`, addedBook);
@@ -33,5 +32,8 @@ export default {
     },
     searchApiByTitle(keywords) {
         return axios.post('/google_book_search', keywords);
-    }
+    },
+    selectBooksWithinDateTime(startDate, endDate, username) {
+        return axios.get('/books_within_date_time', { params: {startDate, endDate, username}});
+    },
 }

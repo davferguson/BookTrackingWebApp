@@ -40,7 +40,6 @@
     methods: {
       searchTitle() {
         const search = this.customSearch.split(' ')
-        console.log(search)
         BookService.searchApiByTitle(search).then(response => {
         this.searchResult = response.data;
       })

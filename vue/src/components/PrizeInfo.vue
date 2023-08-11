@@ -29,6 +29,7 @@
 
 <script>
 import ReadingService from '../services/ReadingService';
+import BookService from '../services/BookService';
 export default {
     name: 'prize-info',
     props: {
@@ -39,6 +40,7 @@ export default {
             barWidth: 0,
             readings: [],
             minutesRead: 0,
+            booksFinished: 0,
         }
     },
     methods: {  
@@ -48,36 +50,59 @@ export default {
         // let progressBarElem = this.$refs.curBar;
         // progressBarElem.style.width = this.barWidth + '%';
         // console.log("mounted: " + this.barWidth);
-    },
-    created() {
-        let calculatedWidth = 0;
-        ReadingService.selectReadingWithinDateTime(this.prize.start_date, this.prize.end_date, this.$store.state.user.username)
-        .then((response) => {
-            this.readings = response.data;
-            this.readings.forEach((element) => {
-                this.minutesRead += element.minutes_read;
-            });
-        
-        if(this.prize.goal_type === "minutes_read"){
-            calculatedWidth = Math.round((this.minutesRead / this.prize.goal_val)*100);
-            if(calculatedWidth > 100){
-                calculatedWidth = 100;
-            } else if(calculatedWidth < 0){
-                calculatedWidth = 0;
-            }
-            let minutesReadSpan = this.$refs.minutesSpan;
-            if(minutesReadSpan != null){
-                minutesReadSpan.innerHTML = this.minutesRead;
-            }
-        }
-        
         let goalSpan = this.$refs.goalSpan;
         goalSpan.innerHTML = this.prize.goal_val;
-        this.barWidth = calculatedWidth;
-        let progressBarElem = this.$refs.curBar;
-        progressBarElem.style.width = this.barWidth + '%';
-        });
-        
+    },
+    created() {
+        if(this.prize.goal_type === "minutes_read"){
+            ReadingService.selectReadingWithinDateTime(this.prize.start_date, this.prize.end_date, this.$store.state.user.username)
+            .then((response) => {
+                this.readings = response.data;
+                this.readings.forEach((element) => {
+                    this.minutesRead += element.minutes_read;
+                });
+                
+                let calculatedWidth = 0;
+                calculatedWidth = Math.round((this.minutesRead / this.prize.goal_val)*100);
+                if(calculatedWidth > 100){
+                    calculatedWidth = 100;
+                } else if(calculatedWidth < 0){
+                    calculatedWidth = 0;
+                }
+                let minutesReadSpan = this.$refs.minutesSpan;
+                if(minutesReadSpan != null){
+                    minutesReadSpan.innerHTML = this.minutesRead;
+                }
+                
+                this.barWidth = calculatedWidth;
+                let progressBarElem = this.$refs.curBar;
+                progressBarElem.style.width = this.barWidth + '%';
+            });
+        }
+        if(this.prize.goal_type === "books_finished"){
+            BookService.selectBooksWithinDateTime(this.prize.start_date, this.prize.end_date, this.$store.state.user.username)
+            .then((response) => {
+                response.data.forEach(() => {
+                    this.booksFinished++;
+                });
+
+                let calculatedWidth  = Math.round((this.booksFinished / this.prize.goal_val)*100);
+                if(calculatedWidth > 100){
+                    calculatedWidth = 100;
+                } else if(calculatedWidth < 0){
+                    calculatedWidth = 0;
+                }
+
+                let booksFinishedSpan = this.$refs.booksSpan;
+                if(booksFinishedSpan != null){
+                    booksFinishedSpan.innerHTML = this.booksFinished;
+                }
+
+                this.barWidth = calculatedWidth;
+                let progressBarElem = this.$refs.curBar;
+                progressBarElem.style.width = this.barWidth + '%';
+            });
+        }
     },
     computed: {
     }
@@ -90,7 +115,7 @@ export default {
     margin-right: 1rem;
 }
 .info-container {
-    display: grid;
+    display: flexbox;
     background-color: #724e91b3;
     /* height: 5rem; */
     font-size: 1rem;

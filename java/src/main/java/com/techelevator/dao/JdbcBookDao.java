@@ -1,11 +1,14 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Book;
+import com.techelevator.model.Reading;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -99,6 +102,31 @@ public class JdbcBookDao implements BookDao{
             books.add(mapRowToBook(rows));
         }
         return books;
+    }
+
+    @Override
+    public List<Book> selectBooksWithinDateTime(String start_date, String end_date, int userId) {
+        if(start_date != null && start_date.length() >= 2){
+            start_date = start_date.substring(0, start_date.length()-2);
+        }
+        if(end_date != null && end_date.length() >= 2){
+            end_date = end_date.substring(0, end_date.length()-2);
+        }
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        if(start_date != null && end_date != null){
+            LocalDateTime startDate = LocalDateTime.parse(start_date, formatter);
+            LocalDateTime endDate = LocalDateTime.parse(end_date, formatter);
+
+            String sql = "SELECT * FROM book b JOIN book_user bu ON b.book_id = bu.book_id WHERE bu.user_id = ? AND bu.finish_date BETWEEN ? AND ?";
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId, startDate, endDate);
+            List<Book> books = new ArrayList<>();
+            while (results.next()) {
+                Book book = mapRowToBook(results);
+                books.add(book);
+            }
+            return books;
+        }
+        return null;
     }
 
     private Book mapRowToBook(SqlRowSet row){

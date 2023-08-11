@@ -38,17 +38,21 @@ public class JdbcReadingDao implements ReadingDao{
             end_date = end_date.substring(0, end_date.length()-2);
         }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        LocalDateTime startDate = LocalDateTime.parse(start_date, formatter);
-        LocalDateTime endDate = LocalDateTime.parse(end_date, formatter);
 
-        String sql = "SELECT * FROM reading_details WHERE user_id = ? AND log_date BETWEEN ? AND ?";
-        List<Reading> readings = new ArrayList<>();
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId, startDate, endDate);
-        while (results.next()) {
-            Reading reading = mapRowToReading(results);
-            readings.add(reading);
+        if(start_date != null && end_date != null){
+            LocalDateTime startDate = LocalDateTime.parse(start_date, formatter);
+            LocalDateTime endDate = LocalDateTime.parse(end_date, formatter);
+
+            String sql = "SELECT * FROM reading_details WHERE user_id = ? AND log_date BETWEEN ? AND ?";
+            List<Reading> readings = new ArrayList<>();
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId, startDate, endDate);
+            while (results.next()) {
+                Reading reading = mapRowToReading(results);
+                readings.add(reading);
+            }
+            return readings;
         }
-        return readings;
+        return null;
     }
 
     @Override

@@ -31,6 +31,9 @@ public class BookService {
     public void removeAllBooks(String username){
         bookDao.removeAllBooks(userDao.findIdByUsername(username));
     }
+    public List<Book> selectBooksWithinDateTime(String start_date, String end_date, int userId){
+        return bookDao.selectBooksWithinDateTime(start_date, end_date, userId);
+    }
 
 //    public Book createBook(String Isbn, String curUsername){
 //        String url = "https://openlibrary.org/isbn/" + Isbn + ".json";
