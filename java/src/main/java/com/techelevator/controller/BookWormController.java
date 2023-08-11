@@ -133,10 +133,10 @@ public class BookWormController {
     }
     @PreAuthorize("isAuthenticated()")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    @RequestMapping(value = "/books_within_date_time", method = RequestMethod.GET)
-    public List<Book> selectBooksWithinDateTime(@RequestParam String startDate, @RequestParam String endDate, @RequestParam String username) {
+    @RequestMapping(value = "/books_finished_within_date_time", method = RequestMethod.GET)
+    public List<Book> selectFinishedBooksWithinDateTime(@RequestParam String startDate, @RequestParam String endDate, @RequestParam String username) {
         int userId = userDao.findIdByUsername(username);
-        return bookService.selectBooksWithinDateTime(startDate, endDate, userId);
+        return bookService.selectFinishedBooksWithinDateTime(startDate, endDate, userId);
     }
 
     @PreAuthorize("isAuthenticated()")

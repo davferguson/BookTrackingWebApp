@@ -105,7 +105,7 @@ public class JdbcBookDao implements BookDao{
     }
 
     @Override
-    public List<Book> selectBooksWithinDateTime(String start_date, String end_date, int userId) {
+    public List<Book> selectFinishedBooksWithinDateTime(String start_date, String end_date, int userId) {
         if(start_date != null && start_date.length() >= 2){
             start_date = start_date.substring(0, start_date.length()-2);
         }
@@ -117,8 +117,8 @@ public class JdbcBookDao implements BookDao{
             LocalDateTime startDate = LocalDateTime.parse(start_date, formatter);
             LocalDateTime endDate = LocalDateTime.parse(end_date, formatter);
 
-            String sql = "SELECT * FROM book b JOIN book_user bu ON b.book_id = bu.book_id WHERE bu.user_id = ? AND bu.finish_date BETWEEN ? AND ?";
-            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId, startDate, endDate);
+            String sql = "SELECT * FROM book b JOIN book_user bu ON b.book_id = bu.book_id WHERE bu.user_id = ? AND bu.status = ? AND bu.finish_date BETWEEN ? AND ?";
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId, "READ", startDate, endDate);
             List<Book> books = new ArrayList<>();
             while (results.next()) {
                 Book book = mapRowToBook(results);

@@ -34,6 +34,6 @@ export default {
         return axios.post('/google_book_search', keywords);
     },
     selectBooksWithinDateTime(startDate, endDate, username) {
-        return axios.get('/books_within_date_time', { params: {startDate, endDate, username}});
+        return axios.get('/books_finished_within_date_time', { params: {startDate, endDate, username}});
     },
 }

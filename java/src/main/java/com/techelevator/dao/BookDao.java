@@ -11,7 +11,7 @@ public interface BookDao {
     void removeAllBooks(int userId);
 
     List<Book> userReadingList(int userId);
-    List<Book> selectBooksWithinDateTime(String start_date, String end_date, int userId);
+    List<Book> selectFinishedBooksWithinDateTime(String start_date, String end_date, int userId);
 
     int getIdByIsbn(String Isbn);
 

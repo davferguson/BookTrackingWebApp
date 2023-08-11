@@ -44,7 +44,7 @@
 import BookService from '../services/BookService';
 import RecordReading from '@/components/RecordReading.vue';
 import CurrentlyReading from '@/components/CurrentlyReading.vue';
-import FinishedReading from '../components/FinishedReading.vue';
+import FinishedReading from '@/components/FinishedReading.vue';
 import FamilyService from '../services/FamilyService';
 import NavBar from '@/components/NavBar.vue';
 export default {
