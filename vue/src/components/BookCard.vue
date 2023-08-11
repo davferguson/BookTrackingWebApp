@@ -7,8 +7,9 @@
     <p class="centered">Log Reading:</p>
     <form v-show="isSelected" class="centered">
         <!-- <label for="time-read">Minutes Read:</label><br> -->
-        <input placeholder="Minutes" min=1 id="time-read" name="timeRead" type="number" v-model="readingActivity.minutes_read"/><br>
+        <input placeholder="Minutes" min="1" id="time-read" name="timeRead" type="number" v-model="readingActivity.minutes_read"/><br>
         <input id="submit" v-on:click.prevent="submitReadingInfo()" type="submit"/>
+        <div v-if="!isValidData" class="error-message">invalid data</div>
     </form>
   </div>
 </template>
@@ -27,6 +28,7 @@ export default {
             url: "/book/" + this.book.isbn,
             user: this.$store.state.user,
             imageAvailable: true,
+            isValidData: true,
             readingActivity: {
               username: this.$store.state.user.username, 
               minutes_read: "",
@@ -54,26 +56,32 @@ export default {
             
         },
         submitReadingInfo() {
-            BookService.submitReading(this.readingActivity).then( response => {
-                if (response.status === 201) {
-                    // this.$router.push('/actioncompleted')
-                }
-                BookService.listCurrent(this.user).then(response => {
-                    this.$store.commit('SET_CURRENTLY_READING', response.data)
-                })
-                BookService.listCompleted(this.user).then(response => {
-                    this.$store.commit('SET_FINISHED_READING', response.data)
-                })
-            });
-            this.$store.commit('SET_CURRENTLY_READING_SELECTED_BOOK', '0');
-            FamilyService.getReadingActivityChild(this.user).then(response => {
-                this.$store.commit('SET_TOTAL_MINUTES_READ', response.data.minutes_read); 
-            }),
-            BookService.minutesRead(this.readingActivity.username, this.readingActivity.isbn).then(response => {
-                // this.minutes_read = response.data;
-                // this.totalMinutes = response.data;
-                this.$store.commit('SET_CUR_BOOK_MINUTES_READ', response.data)
-            });
+            if(this.readingActivity.minutes_read > 0){
+                this.isValidData = true;
+                BookService.submitReading(this.readingActivity).then( response => {
+                    if (response.status === 201) {
+                        // this.$router.push('/actioncompleted')
+                    }
+                    BookService.listCurrent(this.user).then(response => {
+                        this.$store.commit('SET_CURRENTLY_READING', response.data)
+                    })
+                    BookService.listCompleted(this.user).then(response => {
+                        this.$store.commit('SET_FINISHED_READING', response.data)
+                    })
+                });
+                this.$store.commit('SET_CURRENTLY_READING_SELECTED_BOOK', '0');
+                FamilyService.getReadingActivityChild(this.user).then(response => {
+                    this.$store.commit('SET_TOTAL_MINUTES_READ', response.data.minutes_read); 
+                }),
+                BookService.minutesRead(this.readingActivity.username, this.readingActivity.isbn).then(response => {
+                    // this.minutes_read = response.data;
+                    // this.totalMinutes = response.data;
+                    this.$store.commit('SET_CUR_BOOK_MINUTES_READ', response.data)
+                });
+            } else{
+                this.isValidData = false;
+            }
+            
         }
         
     },
@@ -86,6 +94,9 @@ export default {
 </script>
 
 <style scoped>
+.error-message {
+    color: red;
+}
 p {
     color: white;
     font-size: 1.1rem;
