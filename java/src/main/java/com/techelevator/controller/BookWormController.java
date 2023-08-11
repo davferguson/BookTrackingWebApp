@@ -206,6 +206,12 @@ public class BookWormController {
     public List<Prize> prizeList() {
         return prizeService.findAll();
     }
+    @PreAuthorize("isAuthenticated()")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    @RequestMapping(value = "/available_prizes", method = RequestMethod.GET)
+    public List<Prize> listAvailablePrizes(@RequestParam int familyId) {
+        return prizeService.listAvailablePrizes(familyId);
+    }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @ResponseStatus(HttpStatus.CREATED)

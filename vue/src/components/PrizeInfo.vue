@@ -66,7 +66,9 @@ export default {
                 calculatedWidth = 0;
             }
             let minutesReadSpan = this.$refs.minutesSpan;
-            minutesReadSpan.innerHTML = this.minutesRead;
+            if(minutesReadSpan != null){
+                minutesReadSpan.innerHTML = this.minutesRead;
+            }
         }
         
         let goalSpan = this.$refs.goalSpan;

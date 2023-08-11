@@ -33,6 +33,20 @@ public class JdbcPrizeDao implements PrizeDao{
     }
 
     @Override
+    public List<Prize> listAvailablePrizes(int familyId) {
+        List<Prize> prizes = new ArrayList<>();
+        String sql = "SELECT * FROM prize pr JOIN prize_family pf ON pr.prize_id = pf.prize_id WHERE pf.family_id = ? AND ? BETWEEN pr.start_date AND pr.end_date";
+
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, familyId, LocalDateTime.now());
+        while (results.next()) {
+            Prize prize= mapRowToPrize(results);
+            prizes.add(prize);
+        }
+        System.out.println(prizes);
+        return prizes;
+    }
+
+    @Override
     public int createPrize(Prize prize) {
         prize.setStart_date(prize.getStart_date().replace('T', ' '));
         prize.setEnd_date(prize.getEnd_date().replace('T', ' '));

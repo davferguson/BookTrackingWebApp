@@ -112,14 +112,17 @@ import PrizeList from '@/components/PrizeList.vue';
             }
         },
         created() {
-            PrizeService.list().then( (response) => {
-               this.$store.state.prizes = response.data; 
-            });
+            // PrizeService.list().then( (response) => {
+            //    this.$store.state.prizes = response.data; 
+            // });
             if(this.$store.state.user.authorities[0].name == 'ROLE_ADMIN'){
                 this.isAdmin = true;
             }
             FamilyService.getFamilyIdFromUsername(this.username).then((response) => {
                 this.familyId = response.data;
+                PrizeService.listAvailablePrizes(this.familyId).then((response) => {
+                    this.$store.state.prizes = response.data;
+                })
             }).catch((error) => {
                 if(error.response.status === 404){
                     this.isPartOfFamily = false;

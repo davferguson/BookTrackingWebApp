@@ -16,6 +16,9 @@ public class PrizeService {
     public List<Prize> findAll() {
         return prizeDao.findAll();
     }
+    public List<Prize> listAvailablePrizes(int familyId) {
+        return prizeDao.listAvailablePrizes(familyId);
+    }
     public int createPrize(Prize prize) {
         return prizeDao.createPrize(prize);
     }
