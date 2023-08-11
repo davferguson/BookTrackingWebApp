@@ -20,6 +20,14 @@
                         <span>/</span>
                         <span id="maximum-characters">499</span>
                     </div>
+                    <fieldset>
+                        <legend id="goal-type-legend">Select goal type:</legend>
+                        <input type="radio" class="goal-radio" name="goal_type" value="minutes_read" v-model="prize.goal_type" required>
+                        <label for="minutes-read-radio">Minutes Read</label>
+                        <input type="radio" class="goal-radio" name="goal_type" value="books_finished" v-model="prize.goal_type">
+                        <label for="books-finished-radio">Books Finished</label>
+                        <input type="number" placeholder="Goal value" v-model="prize.goal_val" required>
+                    </fieldset>
                     <div>
                         <label for="pstart">Start Date: </label>
                         <input type="datetime-local" id="pstart" v-model="prize.start_date" required>
@@ -64,6 +72,8 @@ import PrizeList from '@/components/PrizeList.vue';
             prize: {
                 name: "",
                 description: "",
+                goal_type: "",
+                goal_val: "",
                 start_date: "",
                 end_date: ""
             }
@@ -116,6 +126,19 @@ import PrizeList from '@/components/PrizeList.vue';
 </script>
 
 <style scoped>
+#goal-type-legend {
+color: #f8c630;
+  font-family: "Mouse Memoirs", sans-serif;
+  font-size: 1.6rem;
+}
+.goal-radio {
+    width: 10px;
+    margin-right: 0;
+}
+#minutes-read-radio {
+    width: 10px;
+    margin-right: 0;
+}
 #no-family-error {
     text-align: center;
     color: red;
@@ -161,7 +184,6 @@ input {
     margin-right: 1rem;
 }
 label {
-    text-align: right;
     margin-left: 1rem;
 }
 #character-counter {

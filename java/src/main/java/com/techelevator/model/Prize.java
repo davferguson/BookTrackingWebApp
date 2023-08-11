@@ -9,10 +9,28 @@ public class Prize {
     private int prize_id;
     private String name;
     private String description;
+    private String goal_type;
+    private int goal_val;
     private String start_date;
     private String end_date;
     public Prize() {
 
+    }
+
+    public String getGoal_type() {
+        return goal_type;
+    }
+
+    public void setGoal_type(String goal_type) {
+        this.goal_type = goal_type;
+    }
+
+    public int getGoal_val() {
+        return goal_val;
+    }
+
+    public void setGoal_val(int goal_val) {
+        this.goal_val = goal_val;
     }
 
     public int getPrize_id() {

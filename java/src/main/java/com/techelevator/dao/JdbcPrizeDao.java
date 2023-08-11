@@ -39,9 +39,9 @@ public class JdbcPrizeDao implements PrizeDao{
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         LocalDateTime startDate = LocalDateTime.parse(prize.getStart_date(), formatter);
         LocalDateTime endDate = LocalDateTime.parse(prize.getEnd_date(), formatter);
-        String sql = "INSERT INTO prize (name, description, start_date, end_date) VALUES (?, ?, ?, ?) RETURNING prize_id";
+        String sql = "INSERT INTO prize (name, description, goal_type, goal_val, start_date, end_date) VALUES (?, ?, ?, ?, ?, ?) RETURNING prize_id";
         Integer prize_id;
-        prize_id = jdbcTemplate.queryForObject(sql, Integer.class, prize.getName(), prize.getDescription(), startDate, endDate);
+        prize_id = jdbcTemplate.queryForObject(sql, Integer.class, prize.getName(), prize.getDescription(), prize.getGoal_type(), prize.getGoal_val(), startDate, endDate);
         if(prize_id != null){
             return prize_id;
         }
@@ -54,6 +54,8 @@ public class JdbcPrizeDao implements PrizeDao{
         prize.setPrize_id(row.getInt("prize_id"));
         prize.setName(row.getString("name"));
         prize.setDescription(row.getString("description"));
+        prize.setGoal_type(row.getString("goal_type"));
+        prize.setGoal_val(row.getInt("goal_val"));
         prize.setStart_date(row.getString("start_date"));
         prize.setEnd_date(row.getString("end_date"));
         return prize;

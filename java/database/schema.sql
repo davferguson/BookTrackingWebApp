@@ -14,6 +14,8 @@ CREATE TABLE IF NOT EXISTS prize (
 	prize_id SERIAL,
 	name varchar(500) NOT NULL,
 	description varchar(500) NOT NULL,
+	goal_type varchar(50) NOT NULL,
+	goal_val INT NOT NULL,
 	start_date TIMESTAMP NOT NULL,
 	end_date TIMESTAMP NOT NULL,
 
