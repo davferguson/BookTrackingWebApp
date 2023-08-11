@@ -15,15 +15,20 @@
             End Date: 
             {{ prize.end_date }}
         </div>
-        <div id="progress-bar" class="w3-light-grey">
-            <div ref="curBar" id="myBar" class="w3-container w3-green" style="height:24px;width:0%">
+        <div id="progress-bar" class="w3-light-grey w3-round">
+            <div ref="curBar" id="myBar" class="w3-container w3-round w3-green" style="height:24px;width:0%">
+                <div>
+                    {{ barWidth + '%' }}
+                </div>
             </div>
         </div>
+        <p v-if="prize.goal_type === 'minutes_read'"><span ref="minutesSpan">0</span> / <span ref="goalSpan">60</span> minutes read</p>
+        <p v-if="prize.goal_type === 'books_finished'"><span ref="booksSpan">0</span> / <span ref="goalSpan">60</span> books finished</p>
     </div>
 </template>
 
 <script>
-
+import ReadingService from '../services/ReadingService';
 export default {
     name: 'prize-info',
     props: {
@@ -32,18 +37,46 @@ export default {
     data() {
         return {
             barWidth: 0,
+            readings: [],
+            minutesRead: 0,
         }
     },
     methods: {  
         
     },
     mounted: function () {
-        let progressBarElem = this.$refs.curBar;
-        progressBarElem.style.width = this.barWidth + '%';
-        console.log("mounted: " + this.barWidth);
+        // let progressBarElem = this.$refs.curBar;
+        // progressBarElem.style.width = this.barWidth + '%';
+        // console.log("mounted: " + this.barWidth);
     },
     created() {
-        this.barWidth = Math.floor(Math.random() * 100);
+        let calculatedWidth = 0;
+        ReadingService.selectReadingWithinDateTime(this.prize.start_date, this.prize.end_date, this.$store.state.user.username)
+        .then((response) => {
+            this.readings = response.data;
+            console.log(this.readings);
+            this.readings.forEach((element) => {
+                this.minutesRead += element.minutes_read;
+            });
+        
+        if(this.prize.goal_type === "minutes_read"){
+            calculatedWidth = Math.round((this.minutesRead / this.prize.goal_val)*100);
+            if(calculatedWidth > 100){
+                calculatedWidth = 100;
+            } else if(calculatedWidth < 0){
+                calculatedWidth = 0;
+            }
+            let minutesReadSpan = this.$refs.minutesSpan;
+            minutesReadSpan.innerHTML = this.minutesRead;
+        }
+        
+        let goalSpan = this.$refs.goalSpan;
+        goalSpan.innerHTML = this.prize.goal_val;
+        this.barWidth = calculatedWidth;
+        let progressBarElem = this.$refs.curBar;
+        progressBarElem.style.width = this.barWidth + '%';
+        });
+        
     },
     computed: {
     }
@@ -51,6 +84,10 @@ export default {
 </script>
 
 <style scoped>
+#progress-bar {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
 .info-container {
     display: grid;
     background-color: #724e91b3;

@@ -141,6 +141,13 @@ public class BookWormController {
 
     @PreAuthorize("isAuthenticated()")
     @ResponseStatus(HttpStatus.ACCEPTED)
+    @RequestMapping(value = "/reading_within_date_time", method = RequestMethod.GET)
+    public List<Reading> selectReadingWithinDateTime(@RequestParam String startDate, @RequestParam String endDate, @RequestParam String username) {
+        int userId = userDao.findIdByUsername(username);
+        return readingService.selectReadingWithinDateTime(startDate, endDate, userId);
+     }
+    @PreAuthorize("isAuthenticated()")
+    @ResponseStatus(HttpStatus.ACCEPTED)
     @RequestMapping(value = "/check_reading_activity/{username}", method = RequestMethod.GET)
     public ReadingActivity checkReadingActivity(@PathVariable String username) {
 
@@ -149,7 +156,7 @@ public class BookWormController {
 
         return readingActivity;
 
-     }
+    }
 
     @PreAuthorize("isAuthenticated()")
     @ResponseStatus(HttpStatus.ACCEPTED)
