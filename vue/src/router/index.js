@@ -85,7 +85,7 @@ const router = new Router({
       }
     },
     {
-      path: "/profile/ :username",
+      path: "/profile",
       name: "profile",
       component: Profile,
       meta: {
@@ -93,7 +93,7 @@ const router = new Router({
       }
     },
     {
-      path: "/readinglist/:username",
+      path: "/readinglist",
       name: "readingList",
       component: ReadingList,
       meta: {

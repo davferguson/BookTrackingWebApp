@@ -59,7 +59,7 @@ export default {
 
     data() {
         return {
-            username: this.$store.state.user.username,
+          username: this.$store.state.user.username,
           addReadingActivity: false,
           totalMinutes: "",
           hours: "",
@@ -114,16 +114,14 @@ export default {
     computed: {
   
     },
-    props: ["user"],
-    
     created() {
-            BookService.listCurrent(this.user).then(response => {
+            BookService.listCurrent(this.$store.state.user).then(response => {
                 this.$store.state.currentlyReading = response.data;
             }),
-            BookService.listCompleted(this.user).then(response => {
+            BookService.listCompleted(this.$store.state.user).then(response => {
                 this.$store.state.finishedReading = response.data;
             }),
-            BookService.list(this.user).then(response => {
+            BookService.list(this.$store.state.user).then(response => {
                 this.$store.state.allBooks = response.data;
             }),
             FamilyService.getReadingActivityChild().then(response => {

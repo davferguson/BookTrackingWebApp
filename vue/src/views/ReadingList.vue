@@ -78,12 +78,13 @@ export default {
     
     },
     created() {
-            BookService.list(this.user).then(response => {
+            BookService.list(this.$store.state.user).then(response => {
                 this.$store.commit('SET_ALL_BOOKS', response.data);
                 if(response.data != ""){
                     this.hasBooks = true;
                 }
-            })
+            });
+            console.log("temp");
         }
 }
 
