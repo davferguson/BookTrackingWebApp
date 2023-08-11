@@ -52,7 +52,7 @@
         <form>
           <input
             type="text"
-            placeholder="Child Username"
+            placeholder="Username"
             v-model="newFamilyMember.username"
           />
           <br />

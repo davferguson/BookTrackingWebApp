@@ -13,11 +13,14 @@
              <div v-if="isAdmin" id="createPrize">
                 <button class="create-prize-btn" v-on:click.prevent="toggleCreatePrize()">Create a Prize</button>
             </div>
+            <div id="no-family-error" v-if="!isPartOfFamily && isCreatePrize">
+                Must be part of a family to create a prize!
+            </div>
              
              <div v-if="isAdmin" id="createPrize">
                 <!-- <h3>Create a prize: </h3> -->
                 <br>
-                <form v-if="isCreatePrize" @submit.prevent="submitPrize">
+                <form v-if="isCreatePrize && isPartOfFamily" @submit.prevent="submitPrize">
                     <input type="text" placeholder="Prize name" id="pname" name="pname" v-model="prize.name" required>
                     <br>
                     <textarea v-on:keyup="prizeCharacterCounter()" id="pdescription" placeholder="Write prize description..." name="pdescription" rows="4" cols="50" maxlength="499" v-model="prize.description" required></textarea>
