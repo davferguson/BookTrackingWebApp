@@ -1,9 +1,10 @@
 <template>
     <div class="info-container">
-        <div>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <div id="prize-name">
             {{ prize.name }}
         </div>
-        <div>
+        <div id="prize-description">
             {{ prize.description }}
         </div>
         <div id="start-date">
@@ -13,6 +14,10 @@
         <div id="end-date">
             End Date: 
             {{ prize.end_date }}
+        </div>
+        <div id="progress-bar" class="w3-light-grey">
+            <div ref="curBar" id="myBar" class="w3-container w3-green" style="height:24px;width:0%">
+            </div>
         </div>
     </div>
 </template>
@@ -26,13 +31,19 @@ export default {
     },
     data() {
         return {
-
+            barWidth: 0,
         }
     },
     methods: {  
         
     },
+    mounted: function () {
+        let progressBarElem = this.$refs.curBar;
+        progressBarElem.style.width = this.barWidth + '%';
+        console.log("mounted: " + this.barWidth);
+    },
     created() {
+        this.barWidth = Math.floor(Math.random() * 100);
     },
     computed: {
     }
@@ -52,6 +63,12 @@ export default {
     color: #f8c630;
     font-family: "Mouse Memoirs", sans-serif;
     font-size: 1.5rem;
+}
+#prize-name {
+    font-size: 2rem;
+}
+#prize-description {
+    font-size: 1.2rem;
 }
 #start-date {
     font-size: 1rem;
