@@ -7,6 +7,15 @@ public class Reading {
     private String isbn;
     private int minutes_read;
     private String username;
+    private String log_date;
+
+    public String getLog_date() {
+        return log_date;
+    }
+
+    public void setLog_date(String log_date) {
+        this.log_date = log_date;
+    }
 
     public int getUser_id() {
         return user_id;

@@ -5,6 +5,9 @@ import com.techelevator.model.Reading;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 @Component
 public class JdbcReadingDao implements ReadingDao{
 
@@ -17,9 +20,8 @@ public class JdbcReadingDao implements ReadingDao{
 
     @Override
     public void logReading(Reading reading) {
-        String sql = "INSERT INTO reading_details (user_id, book_id, isbn,  minutes_read) values(?, ?, ?,?) ";
-
-            jdbcTemplate.update(sql,  reading.getUser_id(), reading.getBook_id(), reading.getIsbn(), reading.getMinutes_read());
+        String sql = "INSERT INTO reading_details (user_id, book_id, isbn,  minutes_read, log_date) values(?, ?, ?, ?, ?) ";
+        jdbcTemplate.update(sql,  reading.getUser_id(), reading.getBook_id(), reading.getIsbn(), reading.getMinutes_read(), LocalDateTime.now());
 
     }
 

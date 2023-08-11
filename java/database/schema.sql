@@ -89,6 +89,7 @@ CREATE TABLE IF NOT EXISTS reading_details(
 	isbn varchar(50) NOT NULL,
 	user_id INT NOT NULL, 
 	minutes_read INT DEFAULT 0,
+	log_date TIMESTAMP NOT NULL,
 	CONSTRAINT FK_book_id FOREIGN KEY (book_id) REFERENCES book (book_id),
 	CONSTRAINT FK_user_id FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
