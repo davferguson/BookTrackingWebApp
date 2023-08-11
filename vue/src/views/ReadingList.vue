@@ -84,7 +84,6 @@ export default {
                     this.hasBooks = true;
                 }
             });
-            console.log("temp");
         }
 }
 

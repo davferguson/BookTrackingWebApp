@@ -29,15 +29,9 @@ export default new Vuex.Store({
     bookAdded: {
 
     },
-    currentlyReading: {
-
-    },
-    finishedReading: {
-
-    },
-    allBooks: {
-
-    },
+    currentlyReading: [],
+    finishedReading: [],
+    allBooks: [],
     totalMinutesRead: "",
     curBookMinutesRead: "",
     selectedBook: "",
