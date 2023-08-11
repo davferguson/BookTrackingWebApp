@@ -54,7 +54,6 @@ export default {
         ReadingService.selectReadingWithinDateTime(this.prize.start_date, this.prize.end_date, this.$store.state.user.username)
         .then((response) => {
             this.readings = response.data;
-            console.log(this.readings);
             this.readings.forEach((element) => {
                 this.minutesRead += element.minutes_read;
             });

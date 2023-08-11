@@ -80,6 +80,7 @@ CREATE TABLE IF NOT EXISTS book_user (
 	book_id INT NOT NULL,
 	user_id INT NOT NULL,
 	status varchar(15) DEFAULT 'UNREAD',
+	finish_date TIMESTAMP,
 	CONSTRAINT FK_book_id FOREIGN KEY (book_id) REFERENCES book (book_id),
 	CONSTRAINT FK_user_id FOREIGN KEY (user_id) REFERENCES users (user_id)
 );

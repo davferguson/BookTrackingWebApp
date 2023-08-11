@@ -7,7 +7,7 @@
     <form v-show="isSelected" class="centered">
         <!-- <label for="time-read">Minutes Read:</label><br> -->
         
-        <button id="submit" v-on:click.prevent="markIncomplete()" type="submit">Mark Unfinished</button>
+        <!-- <button id="submit" v-on:click.prevent="markIncomplete()" type="submit">Mark Unfinished</button> -->
     </form>
   </div>
 </template>

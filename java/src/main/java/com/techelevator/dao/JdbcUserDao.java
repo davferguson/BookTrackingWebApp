@@ -1,6 +1,7 @@
 package com.techelevator.dao;
 
 import java.security.Principal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -205,6 +206,11 @@ public class JdbcUserDao implements UserDao {
     public void updateBookStatus(int userId, int bookId, String status) {
         String sql = "UPDATE book_user SET status = ? WHERE user_id = ? AND book_id = ?";
         jdbcTemplate.update(sql, status, userId, bookId);
+
+        if(status.equals("READ")){
+            sql = "UPDATE book_user SET finish_date = ? WHERE user_id = ? AND book_id = ?";
+            jdbcTemplate.update(sql, LocalDateTime.now(), userId, bookId);
+        }
     }
 
     @Override

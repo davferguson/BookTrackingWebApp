@@ -3,7 +3,13 @@
     <img class="homebackground" src="living-room.jpg">
         <NavBar/>
          <div class="prizewindow">
+            <div id="prize-header">
              <h1>Prizes!</h1>
+             <img id="trophy" src="trophy1.png">
+             <img id="trophy" src="trophy1.png">
+             <img id="trophy" src="trophy1.png">
+            </div>
+             
              <div v-if="isAdmin" id="createPrize">
                 <button class="create-prize-btn" v-on:click.prevent="toggleCreatePrize()">Create a Prize</button>
             </div>
@@ -44,9 +50,7 @@
              </div>
             <h2>Current Prizes</h2>
             <PrizeList :prizes="this.$store.state.prizes"/>
-             <img id="trophy" src="trophy1.png">
-             <img id="trophy" src="trophy1.png">
-             <img id="trophy" src="trophy1.png">
+             
         </div>
 </div>
 </template>   
@@ -126,6 +130,12 @@ import PrizeList from '@/components/PrizeList.vue';
 </script>
 
 <style scoped>
+#prize-header {
+    display:flex;
+    background-color: #3a2649;
+    justify-content: center;
+    align-items: center;
+}
 #goal-type-legend {
 color: #f8c630;
   font-family: "Mouse Memoirs", sans-serif;
@@ -209,7 +219,7 @@ label {
   top: 50px;
   left: 18%;
   background: #724e91b3;
-  height: 40rem;
+  height: 43.5rem;
   width: 70vw;
 }
 h1 {
@@ -233,7 +243,7 @@ h2 {
   text-align: center;
 }
 #trophy {
-    height: 15%;
+    height: 3rem;
 }
 
 </style>
