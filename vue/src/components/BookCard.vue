@@ -94,6 +94,16 @@ export default {
 </script>
 
 <style scoped>
+#selected-book-overlay {
+    position: absolute;
+    background: black;
+    width: 75%;
+    height: 75%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
 .error-message {
     color: red;
 }
