@@ -183,32 +183,20 @@ label {
     top: -101%;
     /* z-index: 1; */
 }
-
 .centered {
     position: relative;
     top: -155%;
     left: 0px;
 }
-
 .card {
     height: 12rem;
     background-color: #3f2950;
 }
-
 .card.selected {
     background-color: rgba(211,211,211,0.1);
     border: 2px solid white;
     border-radius: 1px;
 }
-
-.card .book-title {
-    font-size: 1.5rem;
-}
-
-.card .book-author {
-    font-size: 1rem;
-}
-
 img {
     height: 98%;
     /* height: 14rem; */
