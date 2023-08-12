@@ -1,12 +1,22 @@
 <template>
   <div class="card" :class="{ selected: isSelected }">
+    <div id="expanded-full" v-if="isSelected">
+        <div id="expanded-inner">
+            <img class="expanded-img" :src="book.imageLink">
+            <div class="expanded-center">
+                <span class="close-button" @click="selectBook()">+</span>
+                <p>Log Reading:</p>
+                <p>Log Reading:</p>
+            </div>
+            
+        </div>
+    </div>
     <img :src="book.imageLink" v-on:click="selectBook()"/>
     <!-- <img @load="onImageLoad" v-on:click="selectBook()" v-if="book.isbn&&imageAvailable" v-bind:src="'http://covers.openlibrary.org/b/isbn/' + book.isbn + '-M.jpg'" />
     <div v-on:click="selectBook()" id="nocover" v-else >{{ book.book_name }}<p>{{ book.author }}</p></div> -->
     <div v-on:click="selectBook()" v-bind:class="{ 'color-overlay': isSelected }"></div>
     <p class="centered">Log Reading:</p>
     <form v-show="isSelected" class="centered">
-        <!-- <label for="time-read">Minutes Read:</label><br> -->
         <input placeholder="Minutes" min="1" id="time-read" name="timeRead" type="number" v-model="readingActivity.minutes_read"/><br>
         <input id="submit" v-on:click.prevent="submitReadingInfo()" type="submit"/>
         <div v-if="!isValidData" class="error-message">invalid data</div>
@@ -94,15 +104,42 @@ export default {
 </script>
 
 <style scoped>
-#selected-book-overlay {
-    position: absolute;
-    background: black;
-    width: 75%;
-    height: 75%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.close-button {
+  position: absolute;
+  right: 10px;
+  top: -10px;
+  font-size: 55px;
+  font-weight: 600;
+  color:#ffffff;
+  opacity: 0.5;
+  display: inline-block;
+  transform: rotate(45deg);
+}
+.close-button:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+#expanded-full {
+    position: fixed;
+    background: rgba(0, 0, 0, 0.747);
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
     z-index: 1;
+}
+#expanded-inner {
+    display: inline-block;
+    height: 50%;
+    transform: translate(0, 50%);
+}
+.expanded-center {
+    position: relative;
+    top: -100%;
+}
+.expanded-img {
+    height: 100%;
+    background: #000;
 }
 .error-message {
     color: red;

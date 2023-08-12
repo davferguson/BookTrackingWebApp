@@ -1,7 +1,6 @@
 <template>
 <div>
     <img class="homebackground" src="living-room.jpg">
-
     <NavBar/>
 
      <div class="profilewindow">
