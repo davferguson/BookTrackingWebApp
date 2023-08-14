@@ -1,6 +1,6 @@
 <template>
     <div class="info-container">
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
         <div id="prize-name">
             {{ prize.name }}
         </div>
@@ -110,6 +110,20 @@ export default {
 </script>
 
 <style scoped>
+.w3-light-grey,.w3-hover-light-grey:hover,.w3-light-gray,.w3-hover-light-gray:hover{
+    color:#000!important;
+    background-color:#f1f1f1!important
+
+}
+.w3-round{
+    border-radius:4px
+}
+/* .w3-container{padding:0.01em 16px} */
+
+.w3-green{
+    color:#fff!important;
+    background-color:#4CAF50!important
+}
 #progress-bar {
     margin-left: 1rem;
     margin-right: 1rem;
