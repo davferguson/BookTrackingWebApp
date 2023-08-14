@@ -2,7 +2,7 @@
 <div>
     <img class="homebackground" src="living-room.jpg">
         <NavBar/>
-         <div class="prizewindow">
+         <div class="mainwindow">
             <div id="prize-header">
              <h1>Prizes!</h1>
              <img id="trophy" src="trophy1.png">
@@ -219,14 +219,6 @@ label {
 #createPrize {
     display:flex;
     justify-content: center;
-}
-.prizewindow {
-  position: absolute;
-  top: 50px;
-  left: 18%;
-  background: #724e91b3;
-  height: 43.5rem;
-  width: 70vw;
 }
 h1 {
   font-size: 40px;

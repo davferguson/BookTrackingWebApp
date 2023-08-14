@@ -3,7 +3,7 @@
     <img class="homebackground" src="living-room.jpg">
     <NavBar/>
 
-     <div class="profilewindow">
+     <div class="mainwindow">
         <form v-show="addReadingActivity" >
             <input name="userName" type="text" v-model="readingActivity.username"/>
             <input name="minutes_read" type="number" v-model="readingActivity.minutes_read" />
@@ -168,17 +168,6 @@ h2 {
     position:relative;
     margin: 0 auto;
     color:white;
-}
-
-.profilewindow {
-    text-align: center;
-    position:absolute;
-    top:50px;
-    left:18%;
-    background: rgba(114,78,145,.95);
-    /* background: #22162B; */
-    height:45rem;
-    width: 70vw;
 }
 .addbook_btn {
   background-color: #22162B;

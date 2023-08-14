@@ -2,7 +2,7 @@
     <div>
       <img class="homebackground" src="living-room.jpg">
       <NavBar/>
-        <div class="add_book_window">
+        <div class="mainwindow">
             <h3>Search for books!</h3>
             <form id="filter_form">
                 <input id="filter_input" name="search" type="text" placeholder="Enter title, author, or isbn" v-model="customSearch"/>
@@ -60,15 +60,6 @@
   padding-bottom: 7px;
   margin: 0;
   font-family: "Mouse Memoirs", sans-serif;
-}
-.add_book_window {
-  text-align: center;
-  position:absolute;
-  top:50px;
-  left:18%;
-  background: rgba(114,78,145,0.7);
-  height:45rem;
-  width: 70vw;
 }
 .addbook_btn {
   background-color: #22162B;

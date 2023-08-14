@@ -2,7 +2,7 @@
     <div>
       <img class="homebackground" src="living-room.jpg">
         <NavBar/>
-        <div class="settingswindow">
+        <div class="mainwindow">
             <h3>Settings</h3>
             <button v-on:click.prevent="updateIsDeleteAccount(true)">Delete Account</button>
             <div id="delete_message" v-if="isDeleteAccount">
@@ -95,15 +95,6 @@ button {
 }
 button:hover {
     background-color: #4a305e;
-}
-.settingswindow {
-  text-align: center;
-  position: absolute;
-  top: 50px;
-  left: 18%;
-  background: rgba(114, 78, 145, 0.7);
-  height: 45rem;
-  width: 70vw;
 }
 h1 {
   margin: 10px;

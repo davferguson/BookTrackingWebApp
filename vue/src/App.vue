@@ -47,17 +47,27 @@ body {
 }
 
 .homebackground {
-      width: 100vw;
-      height: 100vh;
-      min-height: 50rem;
-    } 
-  .home {
-    position:absolute;
-    top:20px;
-    left: 10%;
-    color: #724E91;
-    text-decoration: none;
-    font-family: "Mouse Memoirs", sans-serif;
-    font-size: 150%;
-  }
+  width: 100vw;
+  height: 100vh;
+  min-height: 50rem;
+} 
+.home {
+  position:absolute;
+  top:20px;
+  left: 10%;
+  color: #724E91;
+  text-decoration: none;
+  font-family: "Mouse Memoirs", sans-serif;
+  font-size: 150%;
+}
+.mainwindow {
+  text-align: center;
+  position: absolute;
+  top: 50px;
+  left: 18%;
+  background: rgba(114, 78, 145, 0.7);
+  height: 50rem;
+  width: 70vw;
+}
+
 </style>
