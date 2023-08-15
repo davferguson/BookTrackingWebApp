@@ -51,8 +51,8 @@
                     </div>
                 </form>
              </div>
-            <h2>Current Prizes</h2>
-            <PrizeList :prizes="this.$store.state.prizes"/>
+            <h2 v-if="!isCreatePrize">Current Prizes</h2>
+            <PrizeList v-if="!isCreatePrize" :prizes="this.$store.state.prizes"/>
              
         </div>
 </div>
@@ -120,15 +120,16 @@ import PrizeList from '@/components/PrizeList.vue';
             }
             FamilyService.getFamilyIdFromUsername(this.username).then((response) => {
                 this.familyId = response.data;
-                PrizeService.listAvailablePrizes(this.familyId).then((response) => {
-                    this.$store.state.prizes = response.data;
-                })
+                
             }).catch((error) => {
                 if(error.response.status === 404){
                     this.isPartOfFamily = false;
-                    console.log("not in family!");
                     return;
                 }
+            }).finally(() => {
+                PrizeService.listAvailablePrizes(this.familyId).then((response) => {
+                    this.$store.state.prizes = response.data;
+                })
             });
         }
     };
