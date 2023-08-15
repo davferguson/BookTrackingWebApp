@@ -33,7 +33,7 @@
         grid-auto-flow: row;
         margin-bottom: 0;
         padding-bottom: 0;
-        height: 40rem;
+        height: 41.5rem;
     
     
         overflow-x: auto;

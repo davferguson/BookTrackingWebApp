@@ -25,7 +25,7 @@ export default {
     grid-auto-flow: row;
     margin-bottom: 0;
     padding-bottom: 0;
-    height: 30rem;
+    height: 40rem;
 
 
     overflow-x: auto;

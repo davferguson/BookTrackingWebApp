@@ -118,7 +118,10 @@ export default {
 .w3-round{
     border-radius:4px
 }
-/* .w3-container{padding:0.01em 16px} */
+.w3-container{
+    /* padding:0.01em 0px */
+    min-width: 6%;
+}
 
 .w3-green{
     color:#fff!important;
