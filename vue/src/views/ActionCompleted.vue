@@ -3,7 +3,7 @@
     <img class="couch" src="couch.jpg"> 
   <div class="conf">  
   <h1>Action completed! Good job!</h1>
-  <router-link v-bind:to="{name: 'home'}">Return Home</router-link>
+  <router-link v-bind:to="{name: 'profile'}">Return Home</router-link>
   </div>
 </div>
 </template>
