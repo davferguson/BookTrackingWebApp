@@ -52,7 +52,6 @@ export default {
     changeUsername() {
       this.changeUsernameObj.curUsername = this.$store.state.user.username;
       UserService.changeUsername(this.changeUsernameObj).then((response) => {
-        console.log(response.status);
         if(response.status === 200){
           this.isValid = true;
           this.$router.push('/login');
@@ -63,7 +62,6 @@ export default {
         if (response.status === 400) {
           this.errorMessage = response.data.message;
           this.isValid = false;
-          console.log(response.data.message);
         }
       });
       
