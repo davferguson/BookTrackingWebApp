@@ -13,12 +13,12 @@ import java.sql.SQLException;
 @ContextConfiguration(classes = TestingDatabaseConfig.class)
 public abstract class BaseDaoTests {
 
-    @Autowired
-    protected DataSource dataSource;
-
-    @After
-    public void rollback() throws SQLException {
-        dataSource.getConnection().rollback();
-    }
+//    @Autowired
+//    protected DataSource dataSource;
+//
+//    @After
+//    public void rollback() throws SQLException {
+//        dataSource.getConnection().rollback();
+//    }
 
 }
