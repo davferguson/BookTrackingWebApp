@@ -69,7 +69,7 @@ export default {
               isbn: ""
           },
           searchFilter: '',
-          filteredBooks: this.$store.state.allBooks,
+          filteredBooks: [],
           allBooks: this.$store.state.allBooks,
     }
 },
@@ -122,6 +122,7 @@ export default {
             }),
             BookService.list(this.$store.state.user).then(response => {
                 this.$store.state.allBooks = response.data;
+                this.filteredBooks = response.data;
             }),
             FamilyService.getReadingActivityChild().then(response => {
                 this.totalMinutes = response.data.minutes_read;
