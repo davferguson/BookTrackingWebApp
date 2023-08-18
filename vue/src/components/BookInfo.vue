@@ -44,7 +44,6 @@ export default {
         onImageLoad() {
             const curImg = new Image();
             // curImg.src = 'http://covers.openlibrary.org/b/isbn/' + this.book.isbn + '-M.jpg';
-            console.log(this.book.imageLink);
             curImg.src = this.book.imageLink;
             if(curImg.height == 1){
                 this.imageAvailable = false;
