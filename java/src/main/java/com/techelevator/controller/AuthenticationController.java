@@ -17,7 +17,7 @@ import com.techelevator.dao.UserDao;
 import com.techelevator.model.LoginDTO;
 import com.techelevator.model.RegisterUserDTO;
 import com.techelevator.model.User.User;
-import com.techelevator.model.UserAlreadyExistsException;
+import com.techelevator.model.exceptions.UserAlreadyExistsException;
 import com.techelevator.security.jwt.JWTFilter;
 import com.techelevator.security.jwt.TokenProvider;
 

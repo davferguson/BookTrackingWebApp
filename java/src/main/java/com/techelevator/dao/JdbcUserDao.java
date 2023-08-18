@@ -1,12 +1,15 @@
 package com.techelevator.dao;
 
-import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 import com.techelevator.model.*;
+import com.techelevator.model.exceptions.UserAlreadyExistsException;
+import com.techelevator.model.exceptions.UserAlreadyHasFamilyException;
+import com.techelevator.model.exceptions.UserHasNoFamilyException;
+import com.techelevator.model.exceptions.UserNotFoundException;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -174,8 +177,16 @@ public class JdbcUserDao implements UserDao {
         String sql = "SELECT family_id FROM family_user WHERE user_id = ?";
         Integer familyId = jdbcTemplate.queryForObject(sql, Integer.class, curId);
 
-        sql = "INSERT INTO family_user (family_id, user_id) values (?, ?)";
-        jdbcTemplate.update(sql, familyId, addedId);
+        sql = "SELECT family_id FROM family_user WHERE user_id = ?";
+        try {
+            jdbcTemplate.queryForObject(sql, int.class, curId);
+            throw new UserAlreadyHasFamilyException();
+        } catch (EmptyResultDataAccessException e) {
+            sql = "INSERT INTO family_user (family_id, user_id) values (?, ?)";
+            jdbcTemplate.update(sql, familyId, addedId);
+        }
+
+
     }
 
     @Override

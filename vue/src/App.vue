@@ -69,5 +69,8 @@ body {
   height: 50rem;
   width: 70vw;
 }
+.error-message {
+  color: red;
+}
 
 </style>

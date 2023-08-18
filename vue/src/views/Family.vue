@@ -58,6 +58,9 @@
           <br />
           <!-- <input type="text" placeholder="ID of Family" v-model="newFamilyMember.family_id"> -->
           <input class="submit_btn" type="submit" v-on:click.prevent="addFamilyMember()" />
+          <div v-if="isError" class="error-message">
+            {{ errorMessage }}
+          </div>
         </form>
       </div>
     </div>
@@ -79,7 +82,9 @@ export default {
     return {
       registered: false,
       isAdmin: false,
+      isError: false,
       username: this.$store.state.user.username,
+      errorMessage: "",
       family: {
         familyName: ""
       },
@@ -135,13 +140,18 @@ export default {
     },
 
     addFamilyMember() {
-      FamilyService.addToFamilyAccount(this.newFamilyMember).then(
-        (response) => {
+      FamilyService.addToFamilyAccount(this.newFamilyMember)
+      .then((response) => {
           if (response.status === 201) {
+            this.isError = false;
+            this.errorMessage = "";
             this.$router.push("/");
           }
-        }
-      )
+        })
+      .catch((error) => {
+          this.isError = true;
+          this.errorMessage = error.response.data.message;
+      })
     }
   }
 };
