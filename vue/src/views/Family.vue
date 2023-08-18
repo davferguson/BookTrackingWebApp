@@ -44,6 +44,9 @@
           />
           <br />
           <input class="submit_btn" type="submit" v-on:click.prevent="registerChild()" />
+          <div v-if="createChildError != ''" class="error-message">
+            {{ createChildError }}
+          </div>
         </form>
       </div>
 
@@ -85,6 +88,7 @@ export default {
       isError: false,
       username: this.$store.state.user.username,
       errorMessage: "",
+      createChildError: "",
       family: {
         familyName: ""
       },
@@ -125,27 +129,38 @@ export default {
 
   methods: {
     registerChild() {
-      FamilyService.registerChild(this.child);
-      this.child.username = "";
-      this.child.password = "";
-      this.child.confirmPassword = "";
+      FamilyService.registerChild(this.child)
+      .then((response) => {
+        if(response.status === 201){
+          this.createChildError = "";
+          this.$router.push("/actioncompleted");
+        }
+      })
+      .catch((error) => {
+        this.createChildError = error.response.data.message;
+      })
+      .finally(() => {
+        this.child.username = "";
+        this.child.password = "";
+        this.child.confirmPassword = "";
+      })
     },
     registerFamily() {
-      FamilyService.registerFamily(this.family).then((response) => {
+      FamilyService.registerFamily(this.family)
+      .then((response) => {
         if (response.status === 201) {
           this.$store.state.familyMembers = response.data;
           this.registered = true;
         }
-      });
+      })
     },
-
     addFamilyMember() {
       FamilyService.addToFamilyAccount(this.newFamilyMember)
       .then((response) => {
           if (response.status === 201) {
             this.isError = false;
             this.errorMessage = "";
-            this.$router.push("/");
+            this.$router.push("/actioncompleted");
           }
         })
       .catch((error) => {

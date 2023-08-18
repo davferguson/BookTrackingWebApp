@@ -86,7 +86,12 @@ public class JdbcUserDao implements UserDao {
         String password_hash = new BCryptPasswordEncoder().encode(password);
         String ssRole = role.toUpperCase().startsWith("ROLE_") ? role.toUpperCase() : "ROLE_" + role.toUpperCase();
 
-        return jdbcTemplate.update(insertUserSql, username, password_hash, ssRole) == 1;
+        try {
+            User user = findByUsername(username);
+            throw new UserAlreadyExistsException();
+        } catch (UsernameNotFoundException e) {
+            return jdbcTemplate.update(insertUserSql, username, password_hash, ssRole) == 1;
+        }
     }
 
     @Override
@@ -179,7 +184,7 @@ public class JdbcUserDao implements UserDao {
 
         sql = "SELECT family_id FROM family_user WHERE user_id = ?";
         try {
-            jdbcTemplate.queryForObject(sql, int.class, curId);
+            jdbcTemplate.queryForObject(sql, int.class, addedId);
             throw new UserAlreadyHasFamilyException();
         } catch (EmptyResultDataAccessException e) {
             sql = "INSERT INTO family_user (family_id, user_id) values (?, ?)";
