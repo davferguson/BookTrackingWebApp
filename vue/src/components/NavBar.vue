@@ -1,6 +1,5 @@
 <template>
     <div id="navbox">
-        <p><router-link class="linktext" v-bind:to="{ name: 'home' }">Home</router-link></p>
         <p><router-link class="linktext" v-bind:to="{name: 'profile'}">Profile</router-link> </p>
         <p><router-link class="linktext" :to="{ name: 'family'}">Family</router-link></p>
         <p><router-link class="linktext" :to="{ name: 'readingList' }">Books</router-link></p>
