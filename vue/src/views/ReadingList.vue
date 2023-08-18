@@ -8,8 +8,8 @@
             <input id="filter_input" name="filter" type="text" placeholder="Enter title" v-model="searchFilter"/>
             <button class="addbook_btn" v-on:click.prevent="filterBooks()">Filter books</button>
             <button class="addbook_btn" v-on:click.prevent="clearFilter()">Clear</button>
-            <button class="addbook_btn" v-on:click.prevent="addBook()">Add a Book!</button>
         </form>
+        <button class="addbook_btn" v-on:click.prevent="addBook()">Add a Book!</button>
         <BookList v-if="hasBooks" :books="filteredBooks" :isAddBook='false' :isRemoveBook='true'/>
         <!-- <router-link class="addbook_btn" :to="{ name: 'addbook' }">Add a Book!</router-link> -->
     </div>
